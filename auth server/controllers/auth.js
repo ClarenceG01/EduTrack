@@ -1,6 +1,7 @@
 const bcrypt = require("bcrypt");
 const StatusCode = require("http-status-codes").StatusCodes;
 const jwt = require("jsonwebtoken");
+const { user } = require("../config/dbconfig");
 
 async function addUser(req, res) {
   try {
@@ -49,87 +50,101 @@ async function addAdmin(req, res) {
 }
 // login user or admin, check both tables(user & admin)
 async function login(req, res) {
-  const { username, pwd, email, registration_no } = req.body;
+  const { pool } = req;
+  const { username, pwd, email, registration_no, phone } = req.body;
   try {
-    const { pool } = req;
-    if (pool.connected) {
+    if (pool) {
       const result = await pool
         .request()
-        .input("username", username)
+        .input("credential", username || email || registration_no || phone)
         .input("pwd", pwd)
-        .input("email", email)
-        .input("registration_no", registration_no)
-        .execute("getUserOrAdmin");
-      if (result.recordset.length > 0) {
-        const pwd_from_db = result.recordset[0].pwd;
-        const isMatch = await bcrypt.compare(pwd, pwd_from_db);
-        if (isMatch) {
-          //   check for email, user has email and admin doesn't
-          if (result.recordset[0].email) {
-            // generating tokens for user
-            const reg_no = result.recordset[0].registration_no;
-            const { users_id } = result.recordset[0];
-            const payload = {
-              userid: users_id,
-              registration_number: reg_no,
-              role: "user",
-            };
-            const access_token = jwt.sign(
-              payload,
-              process.env.ACCESS_TOKEN_SECRET,
-              {
-                expiresIn: "15m",
-              }
-            );
-            const refresh_token = jwt.sign(
-              payload,
-              process.env.REFRESH_TOKEN_SECRET,
-              {
-                expiresIn: "7d",
-              }
-            );
-            // store both tokens in cookie
-            res.cookie("accesstoken", access_token, {
-              httpOnly: true,
-              secure: true,
-            });
-            res.cookie("refreshtoken", refresh_token, {
-              httpOnly: true,
-              secure: true,
-            });
-          } else {
-            //   generating tokens for admin
-            const payload = {
-              admin_id: result.recordset[0].admin_id,
+        .execute("Test");
+      if (result.rowsAffected[0] === 0 && result.rowsAffected[1] === 0) {
+        res.status(StatusCode.NOT_FOUND).json({
+          message: "User not found",
+        });
+      } else {
+        if (result.recordsets[0].length === 0) {
+          const user_details = result.recordsets[1][0];
+          const pwd_from_db = user_details.pwd;
+          const isMatch = await bcrypt.compare(pwd, pwd_from_db);
+          if (isMatch) {
+            // generating tokens for admin
+            const user_payload = {
+              id: user_details.admin_id,
               role: "admin",
             };
             const access_token = jwt.sign(
-              payload,
+              user_payload,
               process.env.ACCESS_TOKEN_SECRET,
               {
                 expiresIn: "15m",
               }
             );
             const refresh_token = jwt.sign(
-              payload,
+              user_payload,
               process.env.REFRESH_TOKEN_SECRET,
               {
                 expiresIn: "7d",
               }
             );
-            // store both tokens in cookie
-            res.cookie("accesstoken", access_token, {
-              httpOnly: true,
-              secure: true,
-            });
-            res.cookie("refreshtoken", refresh_token, {
-              httpOnly: true,
-              secure: true,
+            res
+              .cookie("refreshToken", refresh_token, {
+                httpOnly: true,
+                sameSite: "none",
+                secure: true,
+              })
+              .header("Authorization", access_token)
+              .status(StatusCode.OK)
+              .json({
+                message: "Login successful",
+              });
+          } else {
+            res.status(StatusCode.UNAUTHORIZED).json({
+              message: "Invalid credentials",
             });
           }
-          res.status(StatusCode.OK).json({
-            message: "Login successful",
-          });
+        } else {
+          const user_details = result.recordsets[0][0];
+          const pwd_from_db = user_details.pwd;
+          const isMatch = await bcrypt.compare(pwd, pwd_from_db);
+          if (isMatch) {
+            // generate tokens for user
+            const user_payload = {
+              id: user_details.users_id,
+              reg_no: user_details.registration_no,
+              role: "user",
+            };
+            const access_token = jwt.sign(
+              user_payload,
+              process.env.ACCESS_TOKEN_SECRET,
+              {
+                expiresIn: "15m",
+              }
+            );
+            const refresh_token = jwt.sign(
+              user_payload,
+              process.env.REFRESH_TOKEN_SECRET,
+              {
+                expiresIn: "7d",
+              }
+            );
+            res
+              .cookie("refreshToken", refresh_token, {
+                httpOnly: true,
+                sameSite: "strict",
+                secure: true,
+              })
+              .header("Authorization", access_token)
+              .status(StatusCode.OK)
+              .json({
+                message: "Login Successful",
+              });
+          } else {
+            res.status(StatusCode.UNAUTHORIZED).json({
+              message: "Invalid credentials",
+            });
+          }
         }
       }
     }
@@ -141,6 +156,9 @@ async function logout(req, res) {
   try {
     res.clearCookie("accesstoken");
     res.clearCookie("refreshtoken");
+    res.status(StatusCode.OK).json({
+      message: "Logout successful",
+    });
   } catch (error) {
     console.log(error);
   }
