@@ -1,6 +1,7 @@
 const express = require("express");
 const { authroute } = require("./route/auth");
 const cors = require("cors");
+const cookieParser = require("cookie-parser");
 const mssql = require("mssql");
 const config = require("./config/dbconfig");
 const StatusCode = require("http-status-codes").StatusCodes;
@@ -19,6 +20,7 @@ app.use(
     credentials: true,
   })
 );
+app.use(cookieParser());
 app.use(express.json());
 async function main() {
   //   database connection

@@ -78,7 +78,7 @@ async function login(req, res) {
               user_payload,
               process.env.ACCESS_TOKEN_SECRET,
               {
-                expiresIn: "15m",
+                expiresIn: "1d",
               }
             );
             const refresh_token = jwt.sign(
@@ -89,15 +89,21 @@ async function login(req, res) {
               }
             );
             res
-              .cookie("refreshToken", refresh_token, {
+              .cookie("refreshtoken", refresh_token, {
                 httpOnly: true,
                 sameSite: "none",
                 secure: true,
               })
-              .header("Authorization", access_token)
+              .cookie("accesstoken", access_token, {
+                httpOnly: true,
+                sameSite: "none",
+                secure: true,
+              })
               .status(StatusCode.OK)
               .json({
+                success: true,
                 message: "Login successful",
+                cookies: req.cookies,
               });
           } else {
             res.status(StatusCode.UNAUTHORIZED).json({
@@ -119,7 +125,7 @@ async function login(req, res) {
               user_payload,
               process.env.ACCESS_TOKEN_SECRET,
               {
-                expiresIn: "15m",
+                expiresIn: "1d",
               }
             );
             const refresh_token = jwt.sign(
@@ -130,15 +136,21 @@ async function login(req, res) {
               }
             );
             res
-              .cookie("refreshToken", refresh_token, {
+              .cookie("refreshtoken", refresh_token, {
                 httpOnly: true,
-                sameSite: "strict",
+                sameSite: "none",
                 secure: true,
               })
-              .header("Authorization", access_token)
+              .cookie("accesstoken", access_token, {
+                httpOnly: true,
+                sameSite: "none",
+                secure: true,
+              })
               .status(StatusCode.OK)
               .json({
-                message: "Login Successful",
+                success: true,
+                message: "Login successful",
+                cookies: req.cookies,
               });
           } else {
             res.status(StatusCode.UNAUTHORIZED).json({
@@ -156,6 +168,8 @@ async function logout(req, res) {
   try {
     res.clearCookie("accesstoken");
     res.clearCookie("refreshtoken");
+    res.clearCookie("accessToken");
+    res.clearCookie("refreshToken");
     res.status(StatusCode.OK).json({
       message: "Logout successful",
     });
