@@ -177,4 +177,9 @@ async function logout(req, res) {
     console.log(error);
   }
 }
-module.exports = { addUser, addAdmin, login, logout };
+module.exports = {
+  addUser,
+  addAdmin,
+  login,
+  logout,
+};

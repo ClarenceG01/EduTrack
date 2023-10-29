@@ -1,23 +1,27 @@
 import React, { useState } from "react";
 import "./login.css";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 const Login = () => {
-  const [username, setUsername] = useState("");
+  const [credential, setCredential] = useState("");
   const [password, setPassword] = useState("");
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      console.log(username, password);
-      const pwd = "qwerty12345678";
-      const reg_no = "C026-01-0676/2020";
       const response = await axios.post("http://localhost:2000/login", {
-        reg_no,
-        pwd,
+        username: credential,
+        pwd: password,
       });
       console.log(response);
     } catch (error) {
       console.log(error);
+      if (error) {
+        toast("User not found", {
+          icon: "❌",
+          position: "top-right",
+        });
+      }
     }
   };
   return (
@@ -35,9 +39,9 @@ const Login = () => {
             <input
               type="text"
               id="username"
-              value={username}
+              value={credential}
               placeholder="Example@gmail.com"
-              onChange={(e) => setUsername(e.target.value)}
+              onChange={(e) => setCredential(e.target.value)}
               autoComplete="off"
             />
           </div>

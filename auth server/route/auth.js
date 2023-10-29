@@ -9,8 +9,13 @@ authroute.get("/logout", logout);
 authroute.get("/authenticate", authenticate, (req, res) => {
   res.json({ message: "Authenticated" });
 });
-authroute.get("/", (req, res) => {
-  res.json(req.cookies);
-});
+// authroute.get("/tokens", (req, res) => {
+//   const refresh_token = req.cookies.refreshtoken;
+//   const access_token = req.cookies.accesstoken;
+//   res.json({ message: "Tokens", refresh_token, access_token });
+// });
+// authroute.get("/test", (req, res) => {
+//   res.json({ message: "Test" });
+// });
 
 module.exports = { authroute };

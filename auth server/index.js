@@ -1,5 +1,6 @@
 const express = require("express");
 const { authroute } = require("./route/auth");
+const { request } = require("./route/request");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const mssql = require("mssql");
@@ -16,7 +17,7 @@ app.use(
     //   "http://localhost:3001",
     //   "http://localhost:3002",
     // ],
-    origin: "http://localhost:5173",
+    origin: ["http://localhost:5173", "http://localhost:2020"],
     credentials: true,
   })
 );
@@ -31,7 +32,7 @@ async function main() {
         req.pool = pool;
         next();
       });
-      app.use(authroute);
+      app.use(authroute, request);
       app.get("/", (req, res) => {
         res.json({ message: "Welcome to the server" });
       });
