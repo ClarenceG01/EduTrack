@@ -1,0 +1,13 @@
+.admin-dashboard {
+  display: flex;
+  align-items: stretch; /* Default value, ensures equal height for both sidebar and content */
+}
+
+.sidebar {
+  max-width: 300px;
+  flex: 0 auto;
+}
+
+.content {
+  flex: auto;
+}
