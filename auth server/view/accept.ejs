@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>Hello from EduTrack 👋</h2>
+    <div>
+        <span>Dear <%= Name%></span>
+        <span>We have received your request and after review we have approved your account.</span>
+    </div>
+    <div>
+        <span>
+            To login use the following credentials:
+            username: <p>
+                <%= Phone%>
+            </p> or <p>
+                <%= Reg_no%>
+            </p>
+            password: <p>
+                <%= Password%>
+            </p>
+        </span>
+        <span>Click <a href="http://localhost:3000/login">here</a> to login</span>
+        <span>Kindly change the password immediately after login</span>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,5 @@
+CREATE OR ALTER PROCEDURE getRequests
+AS
+BEGIN
+    SELECT * FROM Request WHERE isApproved = 0
+END
