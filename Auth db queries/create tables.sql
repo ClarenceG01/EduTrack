@@ -22,6 +22,7 @@ CREATE TABLE Users(
     registration_no VARCHAR(200) FOREIGN KEY REFERENCES Student(registration_no),
     phone_number VARCHAR(200) NOT NULL,
     created_at DATE DEFAULT GETDATE(),
+    pwd_changed BIT DEFAULT 0,
 );
 CREATE TABLE Admin(
     admin_id UNIQUEIDENTIFIER NOT NULL PRIMARY KEY DEFAULT NEWID(),
@@ -38,6 +39,7 @@ CREATE TABLE Request(
     sent_at DATETIME DEFAULT GETDATE(),
     isApproved BIT DEFAULT 0,
 );
+
 
 
 

@@ -1,5 +1,10 @@
 import "./sidebar.css";
-import { LineStyle, PermIdentity, Storefront } from "@material-ui/icons";
+import {
+  LineStyle,
+  PermIdentity,
+  Settings,
+  Assignment,
+} from "@material-ui/icons";
 import { NavLink } from "react-router-dom";
 
 function Sidebar() {
@@ -26,18 +31,18 @@ function Sidebar() {
           </NavLink>
         </div>
         <div className="sidebarMenu">
-          <NavLink to="/dashboard/requests" className="link">
+          <NavLink to="/dashboard/settings" className="link">
             <li className="sidebarListItem">
-              <Storefront className="sidebarIcon" />
-              Requests
+              <Settings className="sidebarIcon" />
+              Settings
             </li>
           </NavLink>
         </div>
         <div className="sidebarMenu">
-          <NavLink to="/dashboard/settings" className="link">
+          <NavLink to="/dashboard/results" className="link">
             <li className="sidebarListItem">
-              <Storefront className="sidebarIcon" />
-              Settings
+              <Assignment className="sidebarIcon" />
+              Results
             </li>
           </NavLink>
         </div>

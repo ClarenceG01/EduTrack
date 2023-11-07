@@ -14,11 +14,11 @@ body {
   font-family: "SF Pro Rounded Regular";
 }
 /* first and second section using nth child*/
-.login-component > section:nth-child(1),
-.login-component > section:nth-child(2) {
+.signup-component > section:nth-child(1),
+.signup-component > section:nth-child(2) {
   margin-bottom: 1.875rem;
 }
-.login-component {
+.signup-component {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -28,17 +28,12 @@ body {
 .image-section {
   margin-bottom: 1.5rem;
 }
-.image-section div {
-  width: 100%;
-  height: 100%;
-  flex-shrink: 0;
-}
-.image-section div img {
+.image-section img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
-.login-form {
+.signup-form {
   width: 100%;
   max-width: 400px;
   padding: 0 1.25rem 1.25rem 1.25rem;
@@ -89,7 +84,7 @@ form div input {
   text-align: right;
   margin-bottom: 1.25rem;
 }
-.login-btn {
+.signup-btn {
   font-family: "Roboto", sans-serif;
   color: white;
   width: 100%;
@@ -111,4 +106,37 @@ form div input {
   font-weight: 400;
   line-height: 100%; /* 14px */
   letter-spacing: 0.14px;
+}
+.login-link div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  font-family: Roboto;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0.14px;
+}
+.login-link div:hover {
+  text-decoration: underline;
+}
+@media screen and (min-width: 820px) {
+  .signup-component {
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+  }
+
+  .image-section {
+    width: 50%;
+    height: 100%;
+  }
+
+  .signup-form {
+    margin-left: 8rem;
+    width: 50%;
+  }
 }
