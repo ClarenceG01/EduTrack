@@ -103,7 +103,7 @@ async function login(req, res) {
               .json({
                 success: true,
                 message: "Login successful",
-                cookies: req.cookies,
+                cookies: access_token,
               });
           } else {
             res.status(StatusCode.UNAUTHORIZED).json({
@@ -150,7 +150,8 @@ async function login(req, res) {
               .json({
                 success: true,
                 message: "Login successful",
-                cookies: req.cookies,
+                cookies: access_token,
+                is_pwd_changed: user_details.pwd_changed,
               });
           } else {
             res.status(StatusCode.UNAUTHORIZED).json({
@@ -168,8 +169,6 @@ async function logout(req, res) {
   try {
     res.clearCookie("accesstoken");
     res.clearCookie("refreshtoken");
-    res.clearCookie("accessToken");
-    res.clearCookie("refreshToken");
     res.status(StatusCode.OK).json({
       message: "Logout successful",
     });

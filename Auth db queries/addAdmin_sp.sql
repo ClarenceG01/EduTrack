@@ -4,7 +4,6 @@ CREATE OR ALTER PROCEDURE addAdmin
     @phone varchar(200)
 AS
 BEGIN
-    
     INSERT INTO Admin (username, pwd, phone_number) VALUES (@username, @pwd, @phone)
 END
 

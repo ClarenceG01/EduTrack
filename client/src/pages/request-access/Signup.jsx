@@ -1,29 +1,38 @@
 import React, { useState } from "react";
 import "./signup.css";
+import { NavLink } from "react-router-dom";
+import axios from "axios";
 
 const Signup = () => {
   // states
   const [user, setUser] = useState({
     email: "",
     phone: "",
-    regno: "",
+    reg_no: "",
   });
   const [isLoading, setIsLoading] = useState(false);
   //handle the data
   const handleChange = (e) => {
+    e.preventDefault();
     const { name, value } = e.target;
     setUser({ ...user, [name]: value });
-    console.log(user);
+    return user;
+  };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const data = handleChange(e);
+    console.log(data);
+    await axios.post("http://localhost:2000/addrequest", data).then((res) => {
+      console.log(res);
+    });
   };
   return (
     <div className="signup-component">
       <section className="image-section">
-        <div>
-          <img src="../../../assets/login.jpg" alt="" />
-        </div>
+        <img src="../../../assets/login.jpg" alt="" />
       </section>
-      <section className="login-form">
-        <form>
+      <section className="signup-form">
+        <form onSubmit={handleSubmit}>
           <span>Welcome to EduTrack👋</span>
           <div className="subtitle">
             <p>
@@ -60,20 +69,23 @@ const Signup = () => {
             <input
               type="text"
               id="phone-number"
-              name="regno"
-              value={user.regno}
+              name="reg_no"
+              value={user.reg_no}
               placeholder="Student's registration number"
               autoComplete="off"
               onChange={handleChange}
             />
           </div>
-          <button className="login-btn" type="submit">
+          <button className="signup-btn" type="submit">
             Submit
           </button>
+          <div className="login-link">
+            <NavLink to="/">
+              <div>Already have an account, Login</div>
+            </NavLink>
+          </div>
+          <span className="copyright">© 2023 ALL RIGHTS RESERVED</span>
         </form>
-      </section>
-      <section>
-        <span className="copyright">© 2023 ALL RIGHTS RESERVED</span>
       </section>
     </div>
   );
