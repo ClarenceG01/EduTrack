@@ -86,7 +86,7 @@ const Login = () => {
               type="password"
               name="password"
               id="password"
-              placeholder="At least 8 characters"
+              placeholder="Password"
               autoComplete="off"
               value={password}
               onChange={(e) => setPassword(e.target.value)}

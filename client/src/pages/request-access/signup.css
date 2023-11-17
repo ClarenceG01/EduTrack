@@ -84,7 +84,7 @@ form div input {
   text-align: right;
   margin-bottom: 1.25rem;
 }
-.signup-btn {
+.submit-btn {
   font-family: "Roboto", sans-serif;
   color: white;
   width: 100%;
@@ -95,6 +95,33 @@ form div input {
   border: none;
   border-radius: 12px;
   background: #162d3a;
+  cursor: pointer;
+}
+.disabled-btn {
+  font-family: "Roboto", sans-serif;
+  color: white;
+  width: 100%;
+  padding: 14px 0px;
+  justify-content: space-between;
+  align-items: center;
+  align-self: stretch;
+  border: none;
+  border-radius: 12px;
+  background: #162d3a;
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+.submit-btn span {
+  font-family: "Roboto", sans-serif;
+  color: white;
+  font-weight: 100;
+  font-size: 20px;
+}
+.disabled-btn span {
+  font-family: "Roboto", sans-serif;
+  color: white;
+  font-weight: 100;
+  font-size: 20px;
 }
 .copyright {
   color: #959cb6;
