@@ -2,7 +2,6 @@ const StatusCodes = require("http-status-codes").StatusCodes;
 const jwt = require("jsonwebtoken");
 
 const authenticate = (req, res, next) => {
-  console.log(req.cookies);
   const refresh_token = req.cookies.refreshtoken;
   const access_token = req.cookies.accesstoken;
   // check if there are no tokens

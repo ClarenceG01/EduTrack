@@ -1,13 +1,23 @@
 .admin-dashboard {
-  display: flex;
-  align-items: stretch; /* Default value, ensures equal height for both sidebar and content */
+  display: grid;
+  grid-template-areas:
+    "side nav"
+    "side outlet";
+  gap: 0;
+  /* grid column with first column with maximum width of 300px and the other auto*/
+  grid-template-columns: 250px auto;
+  grid-template-rows: 4.5rem auto;
 }
 
 .sidebar {
   max-width: 300px;
-  flex: 0 auto;
+  grid-area: side;
 }
 
 .content {
-  flex: auto;
+  grid-area: outlet;
+}
+
+.nav {
+  grid-area: nav;
 }
