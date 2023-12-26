@@ -3,7 +3,7 @@ export function errorToast(message) {
   return toast.error(message, {
     position: "top-right",
     autoClose: 5000,
-    hideProgressBar: false,
+    hideProgressBar: true,
     closeOnClick: true,
     pauseOnHover: true,
     draggable: true,

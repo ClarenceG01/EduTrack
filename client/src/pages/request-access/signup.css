@@ -1,4 +1,4 @@
-@import url(https://db.onlinewebfonts.com/c/ead4092f880f75ff0883ced1856b2c37?family=SF+Pro+Rounded+Regular);
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 * {
@@ -11,7 +11,7 @@ a {
   color: #1e4ae9;
 }
 body {
-  font-family: "SF Pro Rounded Regular";
+  font-family: "Poppins", sans-serif;
 }
 /* first and second section using nth child*/
 .signup-component > section:nth-child(1),
@@ -41,7 +41,7 @@ body {
 form span {
   color: var(--Primary-text, #0c1421);
   font-feature-settings: "clig" off, "liga" off;
-  font-family: SF Pro Rounded;
+  font-family: "Poppins", sans-serif;
   font-size: 24px;
   font-style: normal;
   font-weight: 600;

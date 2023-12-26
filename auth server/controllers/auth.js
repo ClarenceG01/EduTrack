@@ -176,9 +176,43 @@ async function logout(req, res) {
     console.log(error);
   }
 }
+async function getLoggedInUser(req, res) {
+  try {
+    const { pool } = req;
+    const access_token = req.cookies.accesstoken;
+    const { role, id } = jwt.verify(
+      access_token,
+      process.env.ACCESS_TOKEN_SECRET
+    );
+    if (role === "admin") {
+      const result = await pool
+        .request()
+        .input("admin_id", id)
+        .execute("getAdmin");
+      const data = result.recordset[0];
+      res.status(200).json({
+        success: true,
+        data: data,
+      });
+    } else {
+      const result = await pool
+        .request()
+        .input("users_id", id)
+        .execute("getLoggedInUser");
+      const data = result.recordset[0];
+      res.status(200).json({
+        success: true,
+        data: data,
+      });
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
 module.exports = {
   addUser,
   addAdmin,
   login,
   logout,
+  getLoggedInUser,
 };

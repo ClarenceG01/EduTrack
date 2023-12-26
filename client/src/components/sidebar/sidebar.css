@@ -6,16 +6,22 @@ a {
 .sidebar {
   flex: 1;
   height: 100vh;
-  background-color: rgb(251, 251, 255);
+  /* background-color: rgb(215, 215, 231); */
   width: 250px;
+  background: linear-gradient(
+    180deg,
+    #9f69b8 0%,
+    rgba(77, 139, 204, 0.99) 91.15%
+  );
 }
 .logo {
   margin-bottom: 1rem;
 }
 .logo span {
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: #555;
+  color: white;
+  font-size: 2rem;
+  font-weight: 900;
+  font-family: "Caveat Brush", cursive;
 }
 .sidebarWrapper {
   padding: 20px;
@@ -24,11 +30,6 @@ a {
 
 .sidebarMenu {
   margin-bottom: 10px;
-}
-
-.sidebarTitle {
-  font-size: 13px;
-  color: rgb(187, 186, 186);
 }
 
 .sidebarList {
@@ -42,16 +43,25 @@ a {
   display: flex;
   align-items: center;
   border-radius: 10px;
+  color: white;
+  font-size: 1.3rem;
 }
 
-.sidebarListItem.active,
 .sidebarListItem:hover {
-  background-color: rgb(240, 240, 255);
+  background-color: rgb(220, 220, 236);
+  color: black;
+}
+.sidebarListItem:hover .sidebarIcon {
+  color: black;
 }
 
 .sidebarIcon {
+  color: white;
   margin-right: 5px;
   font-size: 20px !important;
+}
+.link:active {
+  background-color: red !important;
 }
 @media only screen and (max-width: 480px) {
 }

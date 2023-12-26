@@ -39,7 +39,25 @@ CREATE TABLE Request(
     sent_at DATETIME DEFAULT GETDATE(),
     isApproved BIT DEFAULT 0,
 );
-
+-- RESULTS TABLES
+CREATE TABLE Semester_exam(
+    semester_id UNIQUEIDENTIFIER NOT NULL PRIMARY KEY DEFAULT NEWID(),
+    semester_name VARCHAR(200) NOT NULL UNIQUE
+);
+CREATE TABLE Unit(
+    unit_id UNIQUEIDENTIFIER NOT NULL PRIMARY KEY DEFAULT NEWID(),
+    unit_name VARCHAR(600) NOT NULL UNIQUE,
+    unit_code VARCHAR(200) NOT  NULL UNIQUE,
+    semester_name VARCHAR(200) FOREIGN KEY REFERENCES Semester_exam(semester_name)
+);
+CREATE TABLE results(
+    results_id UNIQUEIDENTIFIER NOT NULL PRIMARY KEY DEFAULT NEWID(),
+    semester_name VARCHAR(200) FOREIGN KEY REFERENCES Semester_exam(semester_name),
+    student_id UNIQUEIDENTIFIER FOREIGN KEY REFERENCES Student(student_id),
+    unit_code VARCHAR(200) FOREIGN KEY REFERENCES Unit(unit_code),
+    score INTEGER NOT NULL,
+    grade varchar(50) NOT NULL
+);
 
 
 

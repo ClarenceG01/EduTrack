@@ -18,10 +18,14 @@ const Login = () => {
     try {
       e.preventDefault();
       setIsLoading(true);
-      const response = await axios.post("http://localhost:2000/login", {
-        username: credential,
-        pwd: password,
-      });
+      const response = await axios.post(
+        "http://localhost:2000/login",
+        {
+          username: credential,
+          pwd: password,
+        },
+        { withCredentials: true }
+      );
       const { is_pwd_changed } = response.data;
       if (response.data.message === "Login successful") {
         const { role } = decodeToken(response.data.cookies);
@@ -32,7 +36,7 @@ const Login = () => {
           setTimeout(() => {
             setIsLoading(false);
             navigate("/dashboard");
-          }, 10000);
+          }, 5000);
         } else {
           setTimeout(() => {
             successToast("Login successful");
@@ -93,7 +97,7 @@ const Login = () => {
             />
           </div>
           <div className="forget-pwd">
-            <a href="">Forget Password?</a>
+            <a href="">Forgot Password?</a>
           </div>
           <button className="login-btn" type="submit">
             {isLoading ? <BeatLoader color="#eaf3f1" /> : <span>Login</span>}

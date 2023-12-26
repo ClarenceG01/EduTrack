@@ -8,6 +8,6 @@ const {
 const { authenticate } = require("../middleware/authenticate");
 
 request.post("/addrequest", addRequest);
-request.post("/changepassword", changePassword);
+request.post("/changepassword", authenticate, changePassword);
 request.get("/getrequests", authenticate, getRequests);
 module.exports = { request };

@@ -97,9 +97,10 @@ async function changePassword(req, res) {
             });
           } else {
             const { id } = payload;
+            console.log(id);
             const result = await pool
               .request()
-              .input("id", id)
+              .input("users_id", id)
               .execute("getUser");
             const pwd_from_db = result.recordset[0].pwd;
             const is_match = await bcrypt.compare(old_pwd, pwd_from_db);
@@ -127,7 +128,9 @@ async function changePassword(req, res) {
         }
       );
     }
-  } catch (error) {}
+  } catch (error) {
+    console.log(error);
+  }
 }
 async function getRequests(req, res) {
   try {

@@ -1,15 +1,12 @@
-import "./sidebar.css";
-import { React, useState } from "react";
-import {
-  LineStyle,
-  PermIdentity,
-  Settings,
-  Assignment,
-} from "@material-ui/icons";
+import React from "react";
+import "./Sidemenu.css";
 import { NavLink } from "react-router-dom";
-import { PiStudentFill } from "react-icons/pi";
+import { CgProfile } from "react-icons/cg";
+import { LineStyle, Settings } from "@material-ui/icons";
+import { MdEvent } from "react-icons/md";
+import AssessmentIcon from "@mui/icons-material/Assessment";
 
-function Sidebar() {
+const Sidemenu = () => {
   return (
     <div className="sidebar">
       <div className="sidebarWrapper">
@@ -25,10 +22,26 @@ function Sidebar() {
           </NavLink>
         </div>
         <div className="sidebarMenu">
+          <NavLink to="/dashboard/results" className="link">
+            <li className="sidebarListItem">
+              <AssessmentIcon className="sidebarIcon" />
+              Results
+            </li>
+          </NavLink>
+        </div>
+        <div className="sidebarMenu">
           <NavLink to="/dashboard/users" className="link">
             <li className="sidebarListItem">
-              <PermIdentity className="sidebarIcon" />
-              Users
+              <MdEvent className="sidebarIcon" />
+              Events
+            </li>
+          </NavLink>
+        </div>
+        <div className="sidebarMenu">
+          <NavLink to="/dashboard/students" className="link">
+            <li className="sidebarListItem">
+              <CgProfile className="sidebarIcon" />
+              Profile
             </li>
           </NavLink>
         </div>
@@ -40,24 +53,9 @@ function Sidebar() {
             </li>
           </NavLink>
         </div>
-        <div className="sidebarMenu">
-          <NavLink to="/dashboard/results" className="link">
-            <li className="sidebarListItem">
-              <Assignment className="sidebarIcon" />
-              Results
-            </li>
-          </NavLink>
-        </div>
-        <div className="sidebarMenu">
-          <NavLink to="/dashboard/students" className="link">
-            <li className="sidebarListItem">
-              <PiStudentFill className="sidebarIcon" />
-              Student
-            </li>
-          </NavLink>
-        </div>
       </div>
     </div>
   );
-}
-export default Sidebar;
+};
+
+export default Sidemenu;
