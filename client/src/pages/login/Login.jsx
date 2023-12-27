@@ -31,22 +31,22 @@ const Login = () => {
         const { role } = decodeToken(response.data.cookies);
         if (role === "admin") {
           setTimeout(() => {
-            successToast("Login successful");
-          }, 5000);
-          setTimeout(() => {
             setIsLoading(false);
+            successToast("Login successful");
+          }, 4000);
+          setTimeout(() => {
             navigate("/dashboard");
           }, 5000);
         } else {
           setTimeout(() => {
-            successToast("Login successful");
-          }, 5000);
-          setTimeout(() => {
             setIsLoading(false);
+            successToast("Login successful");
+          }, 4000);
+          setTimeout(() => {
             if (is_pwd_changed === false) {
               navigate("/changepwd");
             } else {
-              navigate("/home");
+              navigate("/user/dashboard");
             }
           }, 10000);
         }

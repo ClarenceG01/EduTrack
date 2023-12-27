@@ -58,7 +58,8 @@ async function main() {
     console.log("New user connected");
 
     socket.on("sendMessage", (message) => {
-      io.emit("message", message); // Broadcast the message to all connected clients
+      io.emit("message", message);
+      // Broadcast the message to all connected clients
     });
 
     socket.on("disconnect", () => {
@@ -66,6 +67,6 @@ async function main() {
     });
   });
 
-  app.listen(port, () => console.log(`Server is running on port ${port}`));
+  server.listen(port, () => console.log(`Server is running on port ${port}`));
 }
 main();

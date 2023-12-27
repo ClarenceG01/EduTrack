@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./pages/login/Login";
 import Signup from "./pages/request-access/Signup";
@@ -13,6 +14,11 @@ import "react-toastify/dist/ReactToastify.css";
 import Student from "./components/students/Student";
 import Dash from "./pages/user/Dash";
 import Userhome from "./components/userhome/Userhome";
+import UserResults from "./components/user-results/UserResults";
+import Events from "./components/events/Events";
+import Profile from "./components/profile/Profile";
+import UserSettings from "./components/user-settings/UserSettings";
+import Chat from "./pages/Chat/Chat";
 
 function App() {
   return (
@@ -34,6 +40,11 @@ function App() {
         {/* user dashboard */}
         <Route path="/user/dashboard" element={<Dash />}>
           <Route path="/user/dashboard/" element={<Userhome />} />
+          <Route path="/user/dashboard/results" element={<UserResults />} />
+          <Route path="/user/dashboard/event" element={<Events />} />
+          <Route path="/user/dashboard/profile" element={<Profile />} />
+          <Route path="/user/dashboard/settings" element={<UserSettings />} />
+          <Route path="/user/dashboard/chat" element={<Chat />} />
         </Route>
       </Routes>
       <ToastContainer

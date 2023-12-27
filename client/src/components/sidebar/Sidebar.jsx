@@ -8,6 +8,7 @@ import {
 } from "@material-ui/icons";
 import { NavLink } from "react-router-dom";
 import { PiStudentFill } from "react-icons/pi";
+import { BiSupport } from "react-icons/bi";
 
 function Sidebar() {
   return (
@@ -33,14 +34,6 @@ function Sidebar() {
           </NavLink>
         </div>
         <div className="sidebarMenu">
-          <NavLink to="/dashboard/settings" className="link">
-            <li className="sidebarListItem">
-              <Settings className="sidebarIcon" />
-              Settings
-            </li>
-          </NavLink>
-        </div>
-        <div className="sidebarMenu">
           <NavLink to="/dashboard/results" className="link">
             <li className="sidebarListItem">
               <Assignment className="sidebarIcon" />
@@ -53,6 +46,22 @@ function Sidebar() {
             <li className="sidebarListItem">
               <PiStudentFill className="sidebarIcon" />
               Student
+            </li>
+          </NavLink>
+        </div>
+        <div className="sidebarMenu">
+          <NavLink to="/user/dashboard/event" className="link">
+            <li className="sidebarListItem">
+              <BiSupport className="sidebarIcon" />
+              Support
+            </li>
+          </NavLink>
+        </div>
+        <div className="sidebarMenu">
+          <NavLink to="/dashboard/settings" className="link">
+            <li className="sidebarListItem">
+              <Settings className="sidebarIcon" />
+              Settings
             </li>
           </NavLink>
         </div>
