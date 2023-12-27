@@ -5,6 +5,7 @@ import { CgProfile } from "react-icons/cg";
 import { LineStyle, Settings } from "@material-ui/icons";
 import { MdEvent } from "react-icons/md";
 import AssessmentIcon from "@mui/icons-material/Assessment";
+import { BiSupport } from "react-icons/bi";
 
 const Sidemenu = () => {
   return (
@@ -14,7 +15,7 @@ const Sidemenu = () => {
           <span>EduTrack</span>
         </div>
         <div className="sidebarMenu">
-          <NavLink to="/dashboard/" className="link">
+          <NavLink to="/user/dashboard/" className="link">
             <li className="sidebarListItem">
               <LineStyle className="sidebarIcon" />
               Home
@@ -22,7 +23,7 @@ const Sidemenu = () => {
           </NavLink>
         </div>
         <div className="sidebarMenu">
-          <NavLink to="/dashboard/results" className="link">
+          <NavLink to="/user/dashboard/results" className="link">
             <li className="sidebarListItem">
               <AssessmentIcon className="sidebarIcon" />
               Results
@@ -30,7 +31,7 @@ const Sidemenu = () => {
           </NavLink>
         </div>
         <div className="sidebarMenu">
-          <NavLink to="/dashboard/users" className="link">
+          <NavLink to="/user/dashboard/event" className="link">
             <li className="sidebarListItem">
               <MdEvent className="sidebarIcon" />
               Events
@@ -38,7 +39,15 @@ const Sidemenu = () => {
           </NavLink>
         </div>
         <div className="sidebarMenu">
-          <NavLink to="/dashboard/students" className="link">
+          <NavLink to="/user/dashboard/chat" className="link">
+            <li className="sidebarListItem">
+              <BiSupport className="sidebarIcon" />
+              Support
+            </li>
+          </NavLink>
+        </div>
+        <div className="sidebarMenu">
+          <NavLink to="/user/dashboard/profile" className="link">
             <li className="sidebarListItem">
               <CgProfile className="sidebarIcon" />
               Profile
@@ -46,7 +55,7 @@ const Sidemenu = () => {
           </NavLink>
         </div>
         <div className="sidebarMenu">
-          <NavLink to="/dashboard/settings" className="link">
+          <NavLink to="/user/dashboard/settings" className="link">
             <li className="sidebarListItem">
               <Settings className="sidebarIcon" />
               Settings
