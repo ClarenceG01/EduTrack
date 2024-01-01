@@ -39,7 +39,7 @@ const Navbar = () => {
       <div>
         <section>
           <Avatar src="" />
-          <span>user.username</span>
+          <span>{user}</span>
         </section>
         <section>
           <Logout className="logout" onClick={handleLogout} />

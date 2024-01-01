@@ -1,0 +1,36 @@
+.chat-component {
+  font-family: Arial, sans-serif;
+}
+.messages-container {
+  max-width: 200px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+.chat-input {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+  margin-left: 20px;
+  position: fixed;
+  bottom: 2rem;
+}
+.chat-input input {
+  flex: 1;
+  padding: 8px;
+  margin-right: 20px;
+  height: 40px;
+  padding: 20px;
+  font-size: 1.2rem;
+  border-radius: 10px;
+  border: 2px solid #162d3a;
+}
+.send-icon {
+  cursor: pointer;
+  font-size: 36px;
+  border: 2px solid #162d3a;
+  border-radius: 50%;
+  background-color: white;
+  color: #162d3a;
+  padding: 3px;
+}

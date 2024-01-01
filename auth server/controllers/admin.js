@@ -9,10 +9,27 @@ async function totalUsers(req, res) {
       res.status(StatusCodes.OK).json({
         message: "successful",
         users: Total_Users,
+        new: req.user,
       });
     }
   } catch (error) {
     console.log(error);
   }
 }
-module.exports = { totalUsers };
+async function searchStudent(req, res) {
+  try {
+    const { pool } = req;
+    const { searchTerm } = req.params;
+    const result = await pool
+      .request()
+      .input("search", searchTerm)
+      .execute("searchStudent");
+    res.status(StatusCodes.OK).json({
+      message: "successful",
+      students: result.recordset,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+}
+module.exports = { totalUsers, searchStudent };
