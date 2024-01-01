@@ -32,4 +32,20 @@ async function searchStudent(req, res) {
     console.log(error);
   }
 }
-module.exports = { totalUsers, searchStudent };
+async function getStudent(req, res) {
+  try {
+    const { pool } = req;
+    const { id } = req.params;
+    const result = await pool
+      .request()
+      .input("student_id", id)
+      .execute("getStudent");
+    res.status(StatusCodes.OK).json({
+      message: "successful",
+      student: result.recordset[0],
+    });
+  } catch (error) {
+    console.log(error);
+  }
+}
+module.exports = { totalUsers, searchStudent, getStudent };

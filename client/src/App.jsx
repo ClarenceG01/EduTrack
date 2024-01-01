@@ -19,6 +19,7 @@ import Events from "./components/events/Events";
 import Profile from "./components/profile/Profile";
 import UserSettings from "./components/user-settings/UserSettings";
 import Chat from "./pages/Chat/Chat";
+import Singlestudent from "./components/single-student/Singlestudent";
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
           <Route path="/dashboard/settings" element={<Settings />} />
           <Route path="/dashboard/results" element={<Result />} />
           <Route path="/dashboard/students" element={<Student />} />
+          <Route path="/dashboard/singlestudent" element={<Singlestudent />} />
         </Route>
         <Route path="/home" element={<Users />} />
         <Route path="/changepwd" element={<ChangePassword />} />

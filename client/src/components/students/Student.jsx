@@ -1,75 +1,11 @@
-// import React, { useEffect, useState } from "react";
-// import "./student.css";
-// import { FaSearch } from "react-icons/fa";
-// import axios from "axios";
-
-// const Student = () => {
-//   const [searchTerm, setSearchTerm] = useState("");
-//   const [searchResults, setSearchResults] = useState([]);
-//   const handleSearch = async (e) => {
-//     console.log(e.target.value);
-//     setSearchTerm(e.target.value);
-//     await axios
-//       .get(`http://localhost:2000/search/${searchTerm}}`, {
-//         withCredentials: true,
-//       })
-//       .then((res) => {
-//         console.log(res);
-//       })
-//       .catch((err) => {
-//         console.log(err);
-//       });
-//     console.log(searchResults);
-//   };
-//   useEffect(() => {
-//     handleSearch();
-//   }, [searchTerm]);
-//   return (
-//     <div>
-//       <div>
-//         <div className="container">
-//           <span>Student :</span>
-//           <input
-//             placeholder="search..."
-//             type="text"
-//             className="searchbar"
-//             value={searchTerm}
-//             onChange={handleSearch}
-//           />
-//           <FaSearch className="search-icon" />
-//         </div>
-//       </div>
-//       <div className="student-container">
-//         {searchResults.map((student, index) => (
-//           <div className="student-card" key={index}>
-//             <div className="student-card-header">
-//               <span>{student.name}</span>
-//             </div>
-//             <div className="student-card-body">
-//               <div className="student-card-body-left">
-//                 <span>Roll No :</span>
-//                 <span>{student.rollno}</span>
-//               </div>
-//               <div className="student-card-body-right">
-//                 <span>Class :</span>
-//                 <span>{student.class}</span>
-//               </div>
-//             </div>
-//           </div>
-//         ))}
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Student;
-
 import React, { useEffect, useState } from "react";
 import "./student.css";
 import { FaSearch } from "react-icons/fa";
 import axios from "axios";
+import { useNavigate } from "react-router";
 
 const Student = () => {
+  const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
 
@@ -132,7 +68,15 @@ const Student = () => {
                 <span>{student.year_of_study}</span>
               </div>
               <div className="student-card-body-right">
-                <button>View Student</button>
+                <button
+                  onClick={() => {
+                    navigate("/dashboard/singlestudent", {
+                      state: { student },
+                    });
+                  }}
+                >
+                  View Student
+                </button>
               </div>
             </div>
           </div>
