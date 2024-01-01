@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Message from "../../components/message/Message";
 import io from "socket.io-client";
+import "./chat.css";
+import { IoMdSend } from "react-icons/io";
 
 const socket = io("http://localhost:2000");
 const Chat = () => {
@@ -19,8 +21,8 @@ const Chat = () => {
     setMessageText("");
   };
   return (
-    <div>
-      <div>
+    <div className="chat-component">
+      <div className="messages-container">
         {messages.map((message, index) => (
           <Message
             key={index}
@@ -29,12 +31,14 @@ const Chat = () => {
           />
         ))}
       </div>
-      <input
-        type="text"
-        value={messageText}
-        onChange={(e) => setMessageText(e.target.value)}
-      />
-      <button onClick={sendMessage}>Send</button>
+      <div className="chat-input">
+        <input
+          type="text"
+          value={messageText}
+          onChange={(e) => setMessageText(e.target.value)}
+        />
+        <IoMdSend className="send-icon" onClick={sendMessage} />
+      </div>
     </div>
   );
 };

@@ -3,8 +3,14 @@ import axios from "axios";
 const Home = () => {
   const [userCount, setUserCount] = useState(null);
   async function getUsers() {
-    const users = await axios.get("http://localhost:2000/totalusers");
-    setUserCount(users.data.users);
+    await axios
+      .get("http://localhost:2000/totalusers")
+      .then((users) => {
+        setUserCount(users.data.users);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
   useEffect(() => {
     getUsers();

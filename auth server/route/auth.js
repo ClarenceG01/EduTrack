@@ -15,7 +15,7 @@ authroute.get("/logout", logout);
 authroute.get("/authenticate", authenticate, (req, res) => {
   res.json({ message: "Authenticated" });
 });
-authroute.get("/loggedinuser", authenticate, getLoggedInUser);
+authroute.get("/loggedinuser", getLoggedInUser);
 // authroute.get("/tokens", (req, res) => {
 //   const refresh_token = req.cookies.refreshtoken;
 //   const access_token = req.cookies.accesstoken;
