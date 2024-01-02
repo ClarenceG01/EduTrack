@@ -35,7 +35,10 @@ function App() {
           <Route path="/dashboard/settings" element={<Settings />} />
           <Route path="/dashboard/results" element={<Result />} />
           <Route path="/dashboard/students" element={<Student />} />
-          <Route path="/dashboard/singlestudent" element={<Singlestudent />} />
+          <Route
+            path="/dashboard/singlestudent/:studentId"
+            element={<Singlestudent />}
+          />
         </Route>
         <Route path="/home" element={<Users />} />
         <Route path="/changepwd" element={<ChangePassword />} />
