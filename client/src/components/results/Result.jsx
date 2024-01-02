@@ -1,7 +1,7 @@
 import React from "react";
 
 const Result = () => {
-  return <div>Result</div>;
+  return <div>Resultgggg</div>;
 };
 
 export default Result;

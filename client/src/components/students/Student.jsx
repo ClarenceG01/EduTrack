@@ -70,7 +70,7 @@ const Student = () => {
               <div className="student-card-body-right">
                 <button
                   onClick={() => {
-                    navigate("/dashboard/singlestudent", {
+                    navigate(`/dashboard/singlestudent/${student.student_id}`, {
                       state: { student },
                     });
                   }}
