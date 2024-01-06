@@ -112,6 +112,13 @@ async function login(req, res) {
           }
         } else {
           const user_details = result.recordsets[0][0];
+          // get students_id corresponding to user
+          const response = await pool
+            .request()
+            .input("user_id", user_details.users_id)
+            .execute("getStudentId");
+          const student_id = response.recordset[0].student_id;
+          // check if pwd matches
           const pwd_from_db = user_details.pwd;
           const isMatch = await bcrypt.compare(pwd, pwd_from_db);
           if (isMatch) {
@@ -119,6 +126,7 @@ async function login(req, res) {
             const user_payload = {
               id: user_details.users_id,
               reg_no: user_details.registration_no,
+              student_id: student_id,
               role: "user",
             };
             const access_token = jwt.sign(

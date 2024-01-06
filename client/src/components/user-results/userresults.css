@@ -1,0 +1,7 @@
+.user-result-component {
+  display: flex;
+}
+.yearly-result {
+  margin-right: 20px;
+  padding: 10px;
+}
