@@ -62,7 +62,7 @@ const Year = () => {
   return (
     <div>
       <LineChart
-        width={700}
+        width={500}
         height={500}
         data={yearlyProgress}
         margin={{

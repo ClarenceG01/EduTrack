@@ -3,7 +3,8 @@ import "./table.css";
 import axios from "axios";
 
 const Table = () => {
-  const [semester, setSemester] = useState("1.1"); // default value
+  const [semester, setSemester] = useState("1.1");
+  const [results, setResults] = useState([]);
 
   const getSemesterResults = async () => {
     try {
@@ -12,7 +13,8 @@ const Table = () => {
         `http://localhost:2000/semester/results/${semester}`,
         { withCredentials: true }
       );
-      console.log(res);
+      console.log(res.data.data);
+      setResults(res.data.data);
     } catch (error) {
       console.log(error);
     }
@@ -36,11 +38,18 @@ const Table = () => {
       </select>
       <table>
         <tr>
-          <th>Name</th>
-          <th>Age</th>
-          <th>Gender</th>
+          <th>Unit Name</th>
+          <th>Unit Code</th>
+          <th>Score</th>
         </tr>
         {/* data mapping */}
+        {results.map((result) => (
+          <tr>
+            <td>{result.unit_name}</td>
+            <td>{result.unit_code}</td>
+            <td>{result.score}</td>
+          </tr>
+        ))}
       </table>
     </div>
   );
