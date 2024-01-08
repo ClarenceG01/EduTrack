@@ -43,13 +43,17 @@ const Table = () => {
           <th>Score</th>
         </tr>
         {/* data mapping */}
-        {results.map((result) => (
-          <tr>
-            <td>{result.unit_name}</td>
-            <td>{result.unit_code}</td>
-            <td>{result.score}</td>
-          </tr>
-        ))}
+        {results.length === 0 ? (
+          <p>No data to display ...</p>
+        ) : (
+          results.map((result) => (
+            <tr>
+              <td>{result.unit_name}</td>
+              <td>{result.unit_code}</td>
+              <td>{result.score}</td>
+            </tr>
+          ))
+        )}
       </table>
     </div>
   );

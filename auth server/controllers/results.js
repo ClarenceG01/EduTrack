@@ -67,4 +67,38 @@ async function getSemesterResults(req, res) {
     console.log(error);
   }
 }
-module.exports = { getResults, getYearlyResults, getSemesterResults };
+async function getReport(req, res) {
+  try {
+    const { pool } = req;
+    const { student_id } = req.user;
+    if (pool.connected) {
+      const student = await pool
+        .request()
+        .input("student_id", student_id)
+        .execute("getStudent");
+      const yearly = await pool
+        .request()
+        .input("student_id", student_id)
+        .execute("getYearlyResult");
+      const all_semesters_results = await pool
+        .request()
+        .input("student_id", student_id)
+        .execute("getAllSemesterResults");
+      res.status(StatusCode.OK).json({
+        success: true,
+        message: "Student report retrieved",
+        student_details: student.recordsets[0],
+        yearly: yearly.recordsets[0],
+        exam_results: all_semesters_results.recordsets[0],
+      });
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+module.exports = {
+  getResults,
+  getYearlyResults,
+  getSemesterResults,
+  getReport,
+};
