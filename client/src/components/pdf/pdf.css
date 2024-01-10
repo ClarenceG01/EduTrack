@@ -1,3 +1,13 @@
-/* .hide { */
-/* display: none; */
-/* } */
+.hide {
+  /* distance it far from screen */
+  position: absolute;
+  left: -1000em;
+  top: -1000em;
+  z-index: -1000;
+}
+.pdf-tr td:nth-child(-n + 2) {
+  margin-right: 100px;
+}
+.hide table {
+  margin-left: 50px;
+}
