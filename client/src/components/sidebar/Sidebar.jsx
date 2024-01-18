@@ -9,6 +9,7 @@ import {
 import { NavLink } from "react-router-dom";
 import { PiStudentFill } from "react-icons/pi";
 import { BiSupport } from "react-icons/bi";
+import { MdEvent } from "react-icons/md";
 
 function Sidebar() {
   return (
@@ -46,6 +47,14 @@ function Sidebar() {
             <li className="sidebarListItem">
               <PiStudentFill className="sidebarIcon" />
               Student
+            </li>
+          </NavLink>
+        </div>
+        <div className="sidebarMenu">
+          <NavLink to="/dashboard/noticeboard" className="link">
+            <li className="sidebarListItem">
+              <MdEvent className="sidebarIcon" />
+              Notice Board
             </li>
           </NavLink>
         </div>

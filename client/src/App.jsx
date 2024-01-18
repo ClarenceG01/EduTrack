@@ -20,6 +20,7 @@ import Profile from "./components/profile/Profile";
 import UserSettings from "./components/user-settings/UserSettings";
 import Chat from "./pages/Chat/Chat";
 import Singlestudent from "./components/single-student/Singlestudent";
+import Notice from "./components/notice-board/Notice";
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
             path="/dashboard/singlestudent/:studentId"
             element={<Singlestudent />}
           />
+          <Route path="/dashboard/noticeboard" element={<Notice />} />
         </Route>
         <Route path="/home" element={<Users />} />
         <Route path="/changepwd" element={<ChangePassword />} />
