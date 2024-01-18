@@ -58,6 +58,14 @@ CREATE TABLE results(
     score INTEGER NOT NULL,
     grade varchar(50) NOT NULL
 );
+CREATE TABLE Notice(
+    notice_id UNIQUEIDENTIFIER NOT NULL PRIMARY KEY DEFAULT NEWID(),
+    notice_title VARCHAR(200),
+    file_path VARCHAR(MAX),
+    notice_body VARCHAR(MAX) NOT NULL,
+    created_at DATETIME DEFAULT GETDATE(),
+);
+
 
 
 

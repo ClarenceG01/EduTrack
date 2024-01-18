@@ -8,7 +8,7 @@ import { errorToast } from "../../utils/error_toast";
 import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
-  const [user, setUser] = useState();
+  const [user, setUser] = useState("");
   const navigate = useNavigate();
   const handleLogout = async () => {
     const response = await axios.get("http://localhost:2000/logout", {
@@ -23,28 +23,25 @@ const Navbar = () => {
     } else {
       errorToast("Logout Failed,try later");
     }
-    const getLoggedInUser = async () => {
-      const response = await axios.get("http://localhost:2000/loggedinuser", {
-        withCredentials: true,
-      });
-      setUser(response.data.data);
-      console.log(user);
-    };
-    useEffect(() => {
-      getLoggedInUser();
-    }, []);
   };
+  const getLoggedInUser = async () => {
+    const response = await axios.get("http://localhost:2000/loggedinuser", {
+      withCredentials: true,
+    });
+    setUser(response.data.data);
+  };
+  useEffect(() => {
+    getLoggedInUser();
+  }, []);
   return (
     <nav className="navbar">
-      <div>
-        <section>
-          <Avatar src="" />
-          <span>{user}</span>
-        </section>
-        <section>
-          <Logout className="logout" onClick={handleLogout} />
-        </section>
-      </div>
+      <section>
+        <p className="greetings">Hello</p>
+        <span className="admin-username">{user.username}</span>
+      </section>
+      <section>
+        <Logout className="logout" onClick={handleLogout} />
+      </section>
     </nav>
   );
 };

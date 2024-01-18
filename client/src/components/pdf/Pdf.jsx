@@ -13,6 +13,7 @@ const Pdf = ({ contentRef }) => {
     await axios
       .get("http://localhost:2000/report", { withCredentials: true })
       .then((res) => {
+        console.log(res);
         console.log(res.data.student_details[0]);
         setStudent(res.data.student_details[0]);
         setResults(res.data.exam_results);
