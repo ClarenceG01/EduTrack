@@ -1,15 +1,16 @@
 const express = require("express");
-const { authroute } = require("./route/auth");
-const { adminroute } = require("./route/admin");
-const { request } = require("./route/request");
+const { authroute } = require("./src/route/auth");
+const { adminroute } = require("./src/route/admin");
+const { request } = require("./src/route/request");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const mssql = require("mssql");
-const config = require("./config/dbconfig");
+const config = require("./src/config/dbconfig");
 const StatusCode = require("http-status-codes").StatusCodes;
 const http = require("http");
 const socketIo = require("socket.io");
-const { results } = require("./route/results");
+const { results } = require("./src/route/results");
+const path = require("path");
 
 const app = express();
 const port = process.env.PORT || 2000;
@@ -28,6 +29,7 @@ app.use(
 );
 app.use(cookieParser());
 app.use(express.json());
+app.use(express.static("public"));
 async function main() {
   //   database connection
   try {

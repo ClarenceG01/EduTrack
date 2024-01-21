@@ -59,7 +59,7 @@ function Sidebar() {
           </NavLink>
         </div>
         <div className="sidebarMenu">
-          <NavLink to="/user/dashboard/event" className="link">
+          <NavLink to="/dashboard/chat" className="link">
             <li className="sidebarListItem">
               <BiSupport className="sidebarIcon" />
               Support
