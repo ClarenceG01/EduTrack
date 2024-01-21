@@ -15,12 +15,12 @@ import Student from "./components/students/Student";
 import Dash from "./pages/user/Dash";
 import Userhome from "./components/userhome/Userhome";
 import UserResults from "./components/user-results/UserResults";
-import Events from "./components/events/Events";
 import Profile from "./components/profile/Profile";
 import UserSettings from "./components/user-settings/UserSettings";
 import Chat from "./pages/Chat/Chat";
 import Singlestudent from "./components/single-student/Singlestudent";
 import Notice from "./components/notice-board/Notice";
+import New from "./components/new/New";
 
 function App() {
   return (
@@ -40,6 +40,7 @@ function App() {
             path="/dashboard/singlestudent/:studentId"
             element={<Singlestudent />}
           />
+          <Route path="/dashboard/chat" element={<Chat />} />
           <Route path="/dashboard/noticeboard" element={<Notice />} />
         </Route>
         <Route path="/home" element={<Users />} />
@@ -48,7 +49,7 @@ function App() {
         <Route path="/user/dashboard" element={<Dash />}>
           <Route path="/user/dashboard/" element={<Userhome />} />
           <Route path="/user/dashboard/results" element={<UserResults />} />
-          <Route path="/user/dashboard/event" element={<Events />} />
+          <Route path="/user/dashboard/noticeboard" element={<New />} />
           <Route path="/user/dashboard/profile" element={<Profile />} />
           <Route path="/user/dashboard/settings" element={<UserSettings />} />
           <Route path="/user/dashboard/chat" element={<Chat />} />

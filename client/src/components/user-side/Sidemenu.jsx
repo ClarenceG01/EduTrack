@@ -31,10 +31,10 @@ const Sidemenu = () => {
           </NavLink>
         </div>
         <div className="sidebarMenu">
-          <NavLink to="/user/dashboard/event" className="link">
+          <NavLink to="/user/dashboard/noticeboard" className="link">
             <li className="sidebarListItem">
               <MdEvent className="sidebarIcon" />
-              Events
+              Notice Board
             </li>
           </NavLink>
         </div>

@@ -23,7 +23,7 @@ const Notice = () => {
     console.log(file);
     // Replace with your API endpoint
     const response = await axios.post(
-      "http://localhost:2000/upload",
+      "http://localhost:2000/notice",
       formData,
       {
         headers: {
@@ -36,7 +36,7 @@ const Notice = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="notice-form">
       <label htmlFor="title">Title</label>
       <input
         type="text"
