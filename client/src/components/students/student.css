@@ -15,7 +15,7 @@
   position: relative;
   padding: 15px 40px 15px 20px;
   width: 450px;
-  border: 2px solid rgb(118, 123, 195);
+  border: 2px solid #0773b9;
   border-radius: 5px;
   color: #162d3a;
   font-size: 16px;
@@ -31,7 +31,7 @@
   position: relative;
   position: relative;
   left: -47px;
-  color: rgb(118, 123, 195);
+  color: #0773b9;
 }
 .student-container {
   width: 70%;
@@ -46,7 +46,7 @@
   align-items: center;
   padding: 1rem;
   border-radius: 10px;
-  background-color: rgb(118, 123, 195);
+  background-color: #0773b9;
   color: white;
   margin-bottom: 1rem;
 }

@@ -39,6 +39,13 @@ CREATE TABLE Request(
     sent_at DATETIME DEFAULT GETDATE(),
     isApproved BIT DEFAULT 0,
 );
+CREATE TABLE Pending(
+    pending_id UNIQUEIDENTIFIER NOT NULL PRIMARY KEY DEFAULT NEWID(),
+    email VARCHAR(200) NOT NULL UNIQUE,
+    registration_no VARCHAR(200) NOT NULL,
+    phone_number VARCHAR(200) NOT NULL,
+    sent_at DATETIME DEFAULT GETDATE(),
+);
 -- RESULTS TABLES
 CREATE TABLE Semester_exam(
     semester_id UNIQUEIDENTIFIER NOT NULL PRIMARY KEY DEFAULT NEWID(),
@@ -64,6 +71,8 @@ CREATE TABLE Notice(
     file_path VARCHAR(MAX),
     notice_body VARCHAR(MAX) NOT NULL,
     created_at DATETIME DEFAULT GETDATE(),
+    file_type VARCHAR(MAX),
+    file_name VARCHAR(MAX)
 );
 
 

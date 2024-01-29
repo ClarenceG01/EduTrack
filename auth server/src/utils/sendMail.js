@@ -1,6 +1,6 @@
 const { createTransport } = require("nodemailer");
 
-const email_config = require("../config/emailConfig");
+const { email_config } = require("../config/emailConfig");
 
 const transporter = createTransport(email_config);
 

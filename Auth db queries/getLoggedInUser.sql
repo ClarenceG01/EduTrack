@@ -2,9 +2,11 @@ CREATE OR ALTER PROCEDURE getLoggedInUser
     @users_id varchar(200)
 AS
 BEGIN 
-    SELECT * FROM Users
-    INNER JOIN Student ON Users.registration_no = Student.registration_no
-    WHERE Users.users_id = @users_id
+    SELECT U.users_id, U.email, U.registration_no, U.phone_number, S.profile_pic, S.first_name, S.last_name, S.year_of_study,S.student_id
+    FROM Users AS U
+    INNER JOIN Student AS S
+    ON U.registration_no = S.registration_no
+    WHERE U.users_id = @users_id
 END;
 
 

@@ -11,6 +11,7 @@ const http = require("http");
 const socketIo = require("socket.io");
 const { results } = require("./src/route/results");
 const path = require("path");
+const { ejs } = require("ejs");
 
 const app = express();
 const port = process.env.PORT || 2000;
@@ -21,6 +22,29 @@ const io = socketIo(server, {
   },
 });
 
+// const chat = io.of("/chat");
+// chat.on("connection", (socket) => {
+//   console.log("a user connected:", socket.id);
+
+//   socket.on("sendMessage", (message) => {
+//     // message should include the sender, receiver (if any), and the message content
+//     console.log(message);
+
+//     // If admin sends a message, emit to all parents
+//     if (message.sender === "admin") {
+//       chat.emit("receiveMessage", message);
+//     } else {
+//       // If a parent sends a message, emit only to admin
+//       chat.to("adminSocketId").emit("receiveMessage", message);
+//     }
+//   });
+
+//   socket.on("disconnect", () => {
+//     console.log("user disconnected");
+//   });
+// });
+
+// middlewares
 app.use(
   cors({
     origin: ["http://localhost:5173", "*"],
@@ -30,6 +54,7 @@ app.use(
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.static("public"));
+app.set("view engine", "ejs");
 async function main() {
   //   database connection
   try {
@@ -55,9 +80,9 @@ async function main() {
   } catch (error) {
     console.log(error);
   }
-  // establish socket connection
+  // // // establish socket connection
   io.on("connection", (socket) => {
-    console.log("New user connected");
+    console.log("New user connected :" + socket.id);
 
     socket.on("sendMessage", (message) => {
       io.emit("message", message);

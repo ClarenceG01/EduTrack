@@ -1,40 +1,7 @@
-// import React, { useState, useEffect } from "react";
-// import "./new.css";
-// import axios from "axios";
-
-// const New = () => {
-//   const [filePath, setFilePath] = useState("");
-//   const [notice, setNotices] = useState([]);
-
-//   const getNotice = async () => {
-//     const result = await axios.get(`http://localhost:2000/notice`, {
-//       withCredentials: true,
-//     });
-//     console.log(result.data.notices);
-//     setNotices(result.data.notices);
-//   };
-//   useEffect(() => {
-//     getNotice();
-//   }, []);
-
-//   return (
-//     <div>
-//       <button
-//         onClick={() => {
-//           window.open(notice.file_path);
-//         }}
-//       >
-//         Download
-//       </button>
-//     </div>
-//   );
-// };
-
-// export default New;
-
 import React, { useState, useEffect } from "react";
 import "./new.css";
 import axios from "axios";
+import pdfIcon from "../../../assets/pdf.svg";
 
 const New = () => {
   const [notices, setNotices] = useState([]);
@@ -55,21 +22,27 @@ const New = () => {
   }, []);
 
   const handleFileDownload = (filePath) => {
-    // Assuming 'http://localhost:2000/' is your server URL
     const fileUrl = `http://localhost:2000/uploads/${filePath}`;
     window.open(fileUrl, "_blank");
   };
 
   return (
-    <div>
+    <div className="notice-list">
+      <span className="notice-title">Notice Board</span>
       {notices.map((notice, index) => (
-        <div key={index} className="notice">
-          <h3>{notice.notice_title}</h3>
-          <p>{notice.notice_body}</p>
-          <p>Created at: {new Date(notice.created_at).toLocaleString()}</p>
+        <div key={index} className="notice-item">
+          <img src={pdfIcon} alt="PDF icon" className="notice-icon" />
+          <div className="notice-content">
+            <h3>{notice.notice_title}</h3>
+            <p>{notice.notice_body}</p>
+            {/* <p>Created at: {new Date(notice.created_at).toLocaleString()}</p> */}
+          </div>
           {notice.file_path && (
-            <button onClick={() => handleFileDownload(notice.file_path)}>
-              View File
+            <button
+              onClick={() => handleFileDownload(notice.file_path)}
+              className="notice-download-button"
+            >
+              View
             </button>
           )}
         </div>

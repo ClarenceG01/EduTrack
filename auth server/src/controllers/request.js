@@ -28,20 +28,19 @@ async function addRequest(req, res) {
         // generated a random password
         const generated_pwd = await generateString(8).trim();
         console.log(generated_pwd);
-        let html = await createMarkup("./view/accept.ejs", {
+        let html = await createMarkup("./src/view/accept.ejs", {
           Name: reg_no + " " + "parent/guardian",
           Phone: phone,
           Reg_no: reg_no,
           Password: generated_pwd,
         });
         let message = {
-          to: "gc7651263@gmail.com",
+          to: email,
           from: process.env.EMAIL_USER,
-          subject: "Account Approval",
+          subject: "Account Approval,Welcome to EduTrack",
           html: html,
         };
         await sendMail(message);
-        console.log(reg_no);
         await axios.post("http://localhost:2000/user/register", {
           email: email,
           pwd: generated_pwd,
@@ -49,17 +48,23 @@ async function addRequest(req, res) {
           phone: phone,
         });
       } else {
-        let html = await createMarkup("./view/reject.ejs", {
+        let html = await createMarkup("./src/view/reject.ejs", {
           Reg_no: reg_no,
         });
         let message = {
-          to: "gc7651263@gmail.com",
+          to: email,
           from: process.env.EMAIL_USER,
           subject: "Account Rejection",
           html: html,
         };
+        console.log(html);
         await sendMail(message);
-        await pool.request().input("email", email).execute("deleteRequest");
+        await pool
+          .request()
+          .input("email", email)
+          .input("registration_no", reg_no)
+          .input("phone_number", phone)
+          .execute("deleteRequest");
       }
 
       res.status(StatusCode.OK).json({
