@@ -61,7 +61,7 @@ const Pdf = ({ contentRef }) => {
     <div>
       <div className="hide" ref={newRef}>
         <div>
-          <Avatar src={student.profile_pic} />
+          {/* <Avatar src={student.profile_pic} /> */}
           <div>
             <span>Name:{student.first_name + " " + student.last_name}</span>
             <span>Registration:{student.registration_no}</span>
