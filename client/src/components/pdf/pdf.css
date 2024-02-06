@@ -4,10 +4,28 @@
   left: -1000em;
   top: -1000em;
   z-index: -1000;
+  margin-top: 100px;
 }
 .pdf-tr td:nth-child(-n + 2) {
   margin-right: 100px;
 }
 .hide table {
   margin-left: 50px;
+}
+.students-detail {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 0 80px 40px;
+}
+.dwn-btn {
+  margin: 2rem 5.5rem;
+  padding: 10px 20px;
+  background-color: #0773b9;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 10px;
 }
