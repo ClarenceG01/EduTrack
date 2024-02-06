@@ -80,7 +80,7 @@ async function main() {
   } catch (error) {
     console.log(error);
   }
-  // // // establish socket connection
+  // // establish socket connection
   io.on("connection", (socket) => {
     console.log("New user connected :" + socket.id);
 

@@ -19,3 +19,8 @@
   border: 1px solid #ccc;
   border-radius: 5px;
 }
+.admin-notice-div {
+  /* fit screen */
+  height: 40vh;
+  overflow: auto;
+}

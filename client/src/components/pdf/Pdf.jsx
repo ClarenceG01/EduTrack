@@ -62,7 +62,7 @@ const Pdf = ({ contentRef }) => {
       <div className="hide" ref={newRef}>
         <div>
           {/* <Avatar src={student.profile_pic} /> */}
-          <div>
+          <div className="students-detail">
             <span>Name:{student.first_name + " " + student.last_name}</span>
             <span>Registration:{student.registration_no}</span>
             <span>Year:{student.year_of_study}</span>
@@ -90,7 +90,9 @@ const Pdf = ({ contentRef }) => {
           )}
         </table>
       </div>
-      <button onClick={downloadPdf}>Download PDF</button>
+      <button className="dwn-btn" onClick={downloadPdf}>
+        Download Results
+      </button>
     </div>
   );
 };
