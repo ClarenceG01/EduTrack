@@ -27,14 +27,6 @@ function Sidebar() {
           </NavLink>
         </div>
         <div className="sidebarMenu">
-          <NavLink to="/dashboard/users" className="link">
-            <li className="sidebarListItem">
-              <PermIdentity className="sidebarIcon" />
-              Users
-            </li>
-          </NavLink>
-        </div>
-        <div className="sidebarMenu">
           <NavLink to="/dashboard/results" className="link">
             <li className="sidebarListItem">
               <Assignment className="sidebarIcon" />

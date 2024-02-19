@@ -30,27 +30,33 @@ const New = () => {
     <div>
       <span className="notice-title">Notice Board</span>
       <div className="notice-list">
-        {notices.map((notice, index) => (
-          <div key={index} className="notice-item">
-            <img src={pdfIcon} alt="PDF icon" className="notice-icon" />
-            <div className="notice-content">
-              <h3>{notice.notice_title}</h3>
-              <p>{notice.notice_body}</p>
-            </div>
-            <div className="notice-right">
-              <p>{date}</p>
+        {notices.length > 0 ? (
+          notices.map((notice, index) => (
+            <div key={index} className="notice-item">
+              <img src={pdfIcon} alt="PDF icon" className="notice-icon" />
+              <div className="notice-content">
+                <h3>{notice.notice_title}</h3>
+                <p>{notice.notice_body}</p>
+              </div>
+              <div className="notice-right">
+                <p>{date}</p>
 
-              {notice.file_path && (
-                <button
-                  onClick={() => handleFileDownload(notice.file_path)}
-                  className="notice-download-button"
-                >
-                  View
-                </button>
-              )}
+                {notice.file_path && (
+                  <button
+                    onClick={() => handleFileDownload(notice.file_path)}
+                    className="notice-download-button"
+                  >
+                    View
+                  </button>
+                )}
+              </div>
             </div>
+          ))
+        ) : (
+          <div className="no-notice">
+            <span>No notices available</span>
           </div>
-        ))}
+        )}
       </div>
     </div>
   );

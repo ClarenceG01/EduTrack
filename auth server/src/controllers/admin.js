@@ -1,15 +1,21 @@
 const { StatusCodes } = require("http-status-codes");
 const path = require("path");
-async function totalUsers(req, res) {
+const { generateString } = require("../utils/randomPassword");
+const bcrypt = require("bcrypt");
+async function fetchStats(req, res) {
   try {
     const { pool } = req;
     if (pool.connected) {
+      // no of users
       const result = await pool.request().execute("getNoOfUsers");
       const { Total_Users } = result.recordset[0];
+      // no of pending request
+      const pending = await pool.request().execute("getPendingRequestsCount");
+      const { count } = pending.recordset[0];
       res.status(StatusCodes.OK).json({
         message: "successful",
         users: Total_Users,
-        new: req.user,
+        pending: count,
       });
     }
   } catch (error) {
@@ -101,10 +107,73 @@ async function getFilePath(req, res) {
     console.log(error);
   }
 }
+async function getEachSemesterUnitsAverage(req, res) {
+  try {
+    const { pool } = req;
+    const { semester_name } = req.params;
+    console.log(semester_name);
+    if (pool.connected) {
+      const result = await pool
+        .request()
+        .input("semester_name", semester_name)
+        .execute("getEachSemesterUnitsAverage");
+      console.log(result.recordset);
+      res.status(StatusCodes.OK).json({
+        message: "successful",
+        data: result.recordset,
+      });
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+async function getPendingRequests(req, res) {
+  try {
+    const { pool } = req;
+    if (pool.connected) {
+      const result = await pool.request().execute("getPendingRequests");
+      res.status(StatusCodes.OK).json({
+        message: "successful",
+        requests: result.recordset,
+      });
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+async function approveRequest(req, res) {
+  try {
+    const { pool } = req;
+    const generated_pwd = await generateString(8).trim();
+    const hashed_pwd = await bcrypt.hash(generated_pwd, 8);
+    console.log(hashed_pwd);
+    const { email, phone_number, registration_no } = req.body;
+    if (pool.connected) {
+      const result = await pool
+        .request()
+        .input("email", email)
+        .input("pwd", hashed_pwd)
+        .input("registration_no", registration_no)
+        .input("phone_number", phone_number)
+        .execute("adminApproveRequest");
+      console.log(result);
+      res.status(200).json({
+        success: true,
+        message: "Request Approved",
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    res.send(error);
+  }
+}
 module.exports = {
-  totalUsers,
+  fetchStats,
   searchStudent,
   getStudent,
   uploadNotice,
   getFilePath,
+  getEachSemesterUnitsAverage,
+  getPendingRequests,
+  approveRequest,
 };

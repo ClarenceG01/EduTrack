@@ -1,0 +1,5 @@
+CREATE OR ALTER PROCEDURE getPendingRequestsCount
+AS
+BEGIN
+    SELECT COUNT(*) AS count FROM Pending
+END

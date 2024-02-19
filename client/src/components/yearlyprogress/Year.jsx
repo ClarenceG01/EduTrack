@@ -80,7 +80,7 @@ const Year = () => {
         <Line
           type="monotone"
           dataKey="avg_score"
-          stroke="#8884d8"
+          stroke="#0773b9"
           activeDot={{ r: 8 }}
         />
       </LineChart>

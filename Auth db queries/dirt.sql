@@ -6,6 +6,7 @@ DROP TABLE Student;
 DROP TABLE Users;
 DROP TABLE Admin;
 DROP TABLE Notice
+DROP TABLE Pending
 --SELECT ALL TABLES
 -- Path: select tables.sql
 SELECT * FROM Student;
@@ -13,14 +14,20 @@ SELECT * FROM Users;
 SELECT * FROM Admin;
 SELECT * FROM Parent;
 SELECT * FROM Request;
+SELECT * FROM Pending;
 SELECT * FROM Notice;
 
-DELETE FROM Notice
-DELETE FROM Request WHERE email = 'marybrown@gmail.com'
+DELETE FROM Notice WHERE notice_id = '788f995e-dd52-4fb4-ba33-12399845bf8d'
+DELETE FROM Pending
+DELETE FROM Request WHERE email = 'gc7651263@gmail.com'
 DELETE FROM Users WHERE email = 'marybrown@gmail.com'
 DELETE FROM Parent WHERE email='mary.brown@email.com'
 INSERT INTO Parent (first_name, last_name, phone_number, email,registration_no)
  VALUES ('Mary', 'Brown', '0746576839', 'marybrown@gmail.com','C026-01-0680/2020')
+
+INSERT INTO Parent (first_name, last_name, phone_number, email,registration_no)
+ VALUES ('Mr', 'Naivasha', '0746575839', 'patrick.naivasha@dkut.ac.ke','C026-01-0682/2020')
+ UPDATE 
 
 SELECT * FROM Admin
 DELETE FROM parent WHERE email = 'dwilliams@gmail.com'

@@ -21,6 +21,7 @@ import Chat from "./pages/Chat/Chat";
 import Singlestudent from "./components/single-student/Singlestudent";
 import Notice from "./components/notice-board/Notice";
 import New from "./components/new/New";
+import Pending from "./pages/admin/Pending/Pending";
 
 function App() {
   return (
@@ -30,8 +31,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         {/* admin dashboard */}
         <Route path="/dashboard" element={<Dashboard />}>
-          <Route path="/dashboard/" element={<Home />} />
-          <Route path="/dashboard/users" element={<Users />} />
+          <Route path="/dashboard/" element={<Home />}></Route>
           <Route path="/dashboard/requests" element={<Requests />} />
           <Route path="/dashboard/settings" element={<Settings />} />
           <Route path="/dashboard/results" element={<Result />} />
@@ -42,6 +42,7 @@ function App() {
           />
           <Route path="/dashboard/chat" element={<Chat />} />
           <Route path="/dashboard/noticeboard" element={<Notice />} />
+          <Route path="/dashboard/pending" element={<Pending />} />
         </Route>
         <Route path="/home" element={<Users />} />
         <Route path="/changepwd" element={<ChangePassword />} />

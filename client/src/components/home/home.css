@@ -1,0 +1,28 @@
+.home-component {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin: 1.5rem;
+}
+
+.home-content {
+  width: 350px;
+  height: 150px;
+  background-color: #0773b9;
+  /* border: 1px solid black; */
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.home-span {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+.home-span span {
+  color: white;
+}
+.user-icon {
+  color: white;
+}
+/* #0773b9 */
