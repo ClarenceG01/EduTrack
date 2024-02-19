@@ -22,28 +22,6 @@ const io = socketIo(server, {
   },
 });
 
-// const chat = io.of("/chat");
-// chat.on("connection", (socket) => {
-//   console.log("a user connected:", socket.id);
-
-//   socket.on("sendMessage", (message) => {
-//     // message should include the sender, receiver (if any), and the message content
-//     console.log(message);
-
-//     // If admin sends a message, emit to all parents
-//     if (message.sender === "admin") {
-//       chat.emit("receiveMessage", message);
-//     } else {
-//       // If a parent sends a message, emit only to admin
-//       chat.to("adminSocketId").emit("receiveMessage", message);
-//     }
-//   });
-
-//   socket.on("disconnect", () => {
-//     console.log("user disconnected");
-//   });
-// });
-
 // middlewares
 app.use(
   cors({
@@ -80,9 +58,9 @@ async function main() {
   } catch (error) {
     console.log(error);
   }
-  // // establish socket connection
+  // establish socket connection
   io.on("connection", (socket) => {
-    console.log("New user connected :" + socket.id);
+    console.log("New user connected ");
 
     socket.on("sendMessage", (message) => {
       io.emit("message", message);
@@ -97,3 +75,25 @@ async function main() {
   server.listen(port, () => console.log(`Server is running on port ${port}`));
 }
 main();
+
+// const chat = io.of("/chat");
+// chat.on("connection", (socket) => {
+//   console.log("a user connected:", socket.id);
+
+//   socket.on("sendMessage", (message) => {
+//     // message should include the sender, receiver (if any), and the message content
+//     console.log(message);
+
+//     // If admin sends a message, emit to all parents
+//     if (message.sender === "admin") {
+//       chat.emit("receiveMessage", message);
+//     } else {
+//       // If a parent sends a message, emit only to admin
+//       chat.to("adminSocketId").emit("receiveMessage", message);
+//     }
+//   });
+
+//   socket.on("disconnect", () => {
+//     console.log("user disconnected");
+//   });
+// });
