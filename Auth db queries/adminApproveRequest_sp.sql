@@ -8,14 +8,10 @@ BEGIN
      IF EXISTS (SELECT * FROM parent WHERE registration_no = @registration_no)
     BEGIN
         INSERT INTO Users(email,pwd,registration_no,phone_number)
-    VALUES(@email,@pwd,@registration_no,@phone_number)
+        VALUES(@email,@pwd,@registration_no,@phone_number)
 
-    DELETE FROM Pending
-    WHERE email = @email OR phone_number = @phone_number
+        DELETE FROM Pending
+        WHERE email = @email OR phone_number = @phone_number
     END
 END
 
-EXEC adminApproveRequest 'NJDFJNDF','NDFJNDFJN','C026-01-0680/2020','NDFJNDFJN'
-
-SELECT * FROM Parent
-SELECT * FROM Users
