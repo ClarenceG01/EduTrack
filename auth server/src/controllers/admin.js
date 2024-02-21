@@ -111,13 +111,11 @@ async function getEachSemesterUnitsAverage(req, res) {
   try {
     const { pool } = req;
     const { semester_name } = req.params;
-    console.log(semester_name);
     if (pool.connected) {
       const result = await pool
         .request()
         .input("semester_name", semester_name)
         .execute("getEachSemesterUnitsAverage");
-      console.log(result.recordset);
       res.status(StatusCodes.OK).json({
         message: "successful",
         data: result.recordset,
