@@ -34,3 +34,9 @@
   color: #162d3a;
   padding: 3px;
 }
+.message-sender {
+  background-color: green;
+}
+.message-receiver {
+  background-color: blue;
+}

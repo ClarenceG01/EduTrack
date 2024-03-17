@@ -96,9 +96,31 @@ async function getReport(req, res) {
     console.log(error);
   }
 }
+async function uploadResults(req, res) {
+  const { pool } = req;
+  const { results } = req.body;
+  if (pool.connected) {
+    try {
+      for (let result of results) {
+        console.log(result);
+      }
+      res.status(StatusCode.OK).json({
+        success: true,
+        message: "Results uploaded successfully",
+      });
+    } catch (error) {
+      console.log(error);
+      res.status(StatusCode.INTERNAL_SERVER_ERROR).json({
+        success: false,
+        message: "An error occurred while uploading results",
+      });
+    }
+  }
+}
 module.exports = {
   getResults,
   getYearlyResults,
   getSemesterResults,
   getReport,
+  uploadResults,
 };
