@@ -1,3 +1,22 @@
-.message-container {
-  background-color: red;
+.right-message {
+  background-color: #0773b9;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 10px;
+  max-width: 60%;
+  word-wrap: break-word;
+  text-align: right;
+  margin-left: auto;
+  color: #f1f0f0;
+}
+.left-message {
+  background-color: #06263b;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 10px;
+  max-width: 60%;
+  word-wrap: break-word;
+  text-align: left;
+  margin-right: auto;
+  color: white;
 }

@@ -1,8 +1,9 @@
 import React from "react";
-
-const Message = ({ username, text }) => {
+import "./message.css";
+const Message = ({ username, text, className }) => {
+  console.log(className);
   return (
-    <div className="message-container">
+    <div className={className}>
       <p>{username}</p>
       <p>{text}</p>
     </div>

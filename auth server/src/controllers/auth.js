@@ -90,12 +90,12 @@ async function login(req, res) {
             );
             res
               .cookie("refreshtoken", refresh_token, {
-                httpOnly: true,
+                httpOnly: false,
                 sameSite: "none",
                 secure: true,
               })
               .cookie("accesstoken", access_token, {
-                httpOnly: true,
+                httpOnly: false,
                 sameSite: "none",
                 secure: true,
               })
@@ -145,12 +145,12 @@ async function login(req, res) {
             );
             res
               .cookie("refreshtoken", refresh_token, {
-                httpOnly: true,
+                httpOnly: false,
                 sameSite: "none",
                 secure: true,
               })
               .cookie("accesstoken", access_token, {
-                httpOnly: true,
+                httpOnly: false,
                 sameSite: "none",
                 secure: true,
               })

@@ -12,13 +12,15 @@ const socketIo = require("socket.io");
 const { results } = require("./src/route/results");
 const path = require("path");
 const { ejs } = require("ejs");
+const socketIOSession = require("express-socket.io-session");
 
 const app = express();
 const port = process.env.PORT || 2000;
 const server = http.createServer(app);
 const io = socketIo(server, {
   cors: {
-    origin: "*",
+    origin: ["http://localhost:5173", "*"],
+    credentials: true,
   },
 });
 
@@ -33,6 +35,22 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(express.static("public"));
 app.set("view engine", "ejs");
+
+// establish socket connection
+// establish socket connection
+io.on("connection", (socket) => {
+  console.log("New user connected ");
+
+  socket.on("sendMessage", (message) => {
+    io.emit("message", message);
+    console.log(message);
+  });
+
+  socket.on("disconnect", () => {
+    console.log("User disconnected");
+  });
+});
+
 async function main() {
   //   database connection
   try {
@@ -58,19 +76,6 @@ async function main() {
   } catch (error) {
     console.log(error);
   }
-  // establish socket connection
-  io.on("connection", (socket) => {
-    console.log("New user connected ");
-
-    socket.on("sendMessage", (message) => {
-      io.emit("message", message);
-      // Broadcast the message to all connected clients
-    });
-
-    socket.on("disconnect", () => {
-      console.log("User disconnected");
-    });
-  });
 
   server.listen(port, () => console.log(`Server is running on port ${port}`));
 }
