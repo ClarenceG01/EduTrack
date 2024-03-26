@@ -74,7 +74,20 @@ CREATE TABLE Notice(
     file_type VARCHAR(MAX),
     file_name VARCHAR(MAX)
 );
-
-
-
+CREATE TABLE user_messages(
+    user_messages_id UNIQUEIDENTIFIER NOT NULL PRIMARY KEY DEFAULT NEWID(),
+    sender_id UNIQUEIDENTIFIER FOREIGN KEY REFERENCES Users(users_id),
+    receiver_id UNIQUEIDENTIFIER FOREIGN KEY REFERENCES Admin(admin_id),
+    message_body VARCHAR(MAX) NOT NULL,
+    sent_at DATETIME DEFAULT GETDATE(),
+    isRead BIT DEFAULT 0
+);
+CREATE TABLE admin_messages(
+    admin_messages_id UNIQUEIDENTIFIER NOT NULL PRIMARY KEY DEFAULT NEWID(),
+    sender_id UNIQUEIDENTIFIER FOREIGN KEY REFERENCES Admin(admin_id),
+    receiver_id UNIQUEIDENTIFIER FOREIGN KEY REFERENCES Users(users_id),
+    message_body VARCHAR(MAX) NOT NULL,
+    sent_at DATETIME DEFAULT GETDATE(),
+    isRead BIT DEFAULT 0
+);
 

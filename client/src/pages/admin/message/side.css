@@ -1,0 +1,138 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.sidechat-component {
+  margin: 0;
+  margin-left: 1.5rem;
+  width: 35%;
+  height: 100%;
+  overflow: hidden;
+  background-color: #f1f0f0;
+  border-radius: 10px;
+  border: 1px solid #e1e2ff;
+  background: #fdfdff;
+}
+.sidechat-top {
+  margin: 10px 5px;
+}
+.sidechat-top input {
+  width: 90%;
+  padding: 10px;
+  border: none;
+  margin: 5px;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+.sidechat-card {
+  margin: 1.5rem auto;
+  padding: 1rem 1.5rem;
+  width: 90%;
+  height: 100px;
+  flex-shrink: 0;
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+    rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+  filter: rgba(0px 0px 8px #b7b9ff);
+  text-align: left;
+  border-radius: 10px;
+  border: 1px solid #dfe0eb;
+  background: #f1f0f0;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+.sidechat-card:hover {
+  background-color: #c2c2e4;
+}
+.chat-user-details {
+  margin: 10px 0;
+  color: black;
+  font-family: "Roboto", sans-serif;
+  font-size: 1.2rem;
+  display: flex;
+  flex-direction: column;
+}
+.chat-user-details span:first-child {
+  color: #000;
+  font-family: "Poppins", sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  margin-bottom: 0.5rem;
+}
+.chat-user-details span:last-child {
+  color: #a1a1a1;
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.unread-messages-count {
+  background-color: #e1e2ff;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  color: white;
+  position: relative;
+}
+.unread-messages-count span {
+  color: #0773b9;
+  font-family: Roboto;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.search-sidechat-card {
+  margin: 1.5rem auto;
+  padding: 1rem 1.5rem;
+  width: 90%;
+  height: 100px;
+  flex-shrink: 0;
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+    rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+  filter: rgba(0px 0px 8px #b7b9ff);
+  border-radius: 10px;
+  border: 1px solid #dfe0eb;
+  background: #f1f0f0;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+}
+.search-sidechat-card span:first-child {
+  color: #000;
+  font-family: "Poppins", sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  margin-bottom: 0.5rem;
+  text-align: left;
+}
+.search-sidechat-card span:last-child {
+  color: #a1a1a1;
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-align: left;
+}
+.search-sidechat-card:hover {
+  background-color: #ececf5;
+}

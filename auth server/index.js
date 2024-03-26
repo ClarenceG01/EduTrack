@@ -2,6 +2,7 @@ const express = require("express");
 const { authroute } = require("./src/route/auth");
 const { adminroute } = require("./src/route/admin");
 const { request } = require("./src/route/request");
+const { message } = require("./src/route/message");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const mssql = require("mssql");
@@ -60,7 +61,7 @@ async function main() {
         req.pool = pool;
         next();
       });
-      app.use(authroute, request, adminroute, results);
+      app.use(authroute, request, adminroute, results, message);
       app.get("/", (req, res) => {
         res.json({ message: "Welcome to the server" });
       });
