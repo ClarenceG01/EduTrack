@@ -22,6 +22,8 @@ import Singlestudent from "./components/single-student/Singlestudent";
 import Notice from "./components/notice-board/Notice";
 import New from "./components/new/New";
 import Pending from "./pages/admin/Pending/Pending";
+import Default from "./components/message-side/Default";
+import Conversation from "./components/message-side/Conversation";
 
 function App() {
   return (
@@ -40,7 +42,10 @@ function App() {
             path="/dashboard/singlestudent/:studentId"
             element={<Singlestudent />}
           />
-          <Route path="/dashboard/chat" element={<Chat />} />
+          <Route path="/dashboard/chat" element={<Chat />}>
+            <Route path="/dashboard/chat/" element={<Default />} />
+            <Route path="/dashboard/chat/:id" element={<Conversation />} />
+          </Route>
           <Route path="/dashboard/noticeboard" element={<Notice />} />
           <Route path="/dashboard/pending" element={<Pending />} />
         </Route>

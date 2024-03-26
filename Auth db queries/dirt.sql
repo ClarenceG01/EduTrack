@@ -7,6 +7,7 @@ DROP TABLE Users;
 DROP TABLE Admin;
 DROP TABLE Notice
 DROP TABLE Pending
+DROP TABLE Messages;
 --SELECT ALL TABLES
 -- Path: select tables.sql
 SELECT * FROM Student;
@@ -16,6 +17,7 @@ SELECT * FROM Parent;
 SELECT * FROM Request;
 SELECT * FROM Pending;
 SELECT * FROM Notice;
+SELECT * FROM Messages;
 
 DELETE FROM Notice WHERE notice_id = '788f995e-dd52-4fb4-ba33-12399845bf8d'
 DELETE FROM Pending
