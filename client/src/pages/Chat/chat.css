@@ -59,3 +59,43 @@
   padding: 1.5rem 2.5rem;
   border-bottom: 1px solid #e1e2ff;
 }
+.messages-user-side {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  margin-left: 2rem;
+  background: #fdfdff;
+}
+.message-user-header {
+  padding: 1.5rem 2.5rem;
+  border-bottom: 1px solid #e1e2ff;
+}
+.user-chat-input {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+  margin-left: 20px;
+  position: fixed;
+  bottom: 2rem;
+}
+.user-chat-input input {
+  width: 100%;
+  padding: 8px;
+  margin: 0 auto;
+  height: 40px;
+  padding: 20px;
+  font-size: 1.2rem;
+  border-radius: 10px;
+  border: 2px solid #162d3a;
+}
+.user-chat-send-btn {
+  cursor: pointer;
+  font-size: 36px;
+  width: 45px;
+  height: 45px;
+  background-color: white;
+  color: #162d3a;
+  padding: 3px;
+  margin-left: 40px;
+}

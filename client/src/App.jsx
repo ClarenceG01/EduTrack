@@ -24,6 +24,7 @@ import New from "./components/new/New";
 import Pending from "./pages/admin/Pending/Pending";
 import Default from "./components/message-side/Default";
 import Conversation from "./components/message-side/Conversation";
+import Convo from "./components/message-side/Convo";
 
 function App() {
   return (
@@ -58,7 +59,9 @@ function App() {
           <Route path="/user/dashboard/noticeboard" element={<New />} />
           <Route path="/user/dashboard/profile" element={<Profile />} />
           <Route path="/user/dashboard/settings" element={<UserSettings />} />
-          <Route path="/user/dashboard/chat" element={<Chat />} />
+          <Route path="/user/dashboard/chat" element={<Chat />}>
+            <Route path="/user/dashboard/chat/:id" element={<Convo />} />
+          </Route>
         </Route>
       </Routes>
       <ToastContainer

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./Sidemenu.css";
 import { NavLink } from "react-router-dom";
 import { CgProfile } from "react-icons/cg";
@@ -6,8 +6,15 @@ import { LineStyle, Settings } from "@material-ui/icons";
 import { MdEvent } from "react-icons/md";
 import AssessmentIcon from "@mui/icons-material/Assessment";
 import { BiSupport } from "react-icons/bi";
+import getUser from "../../utils/getUser";
 
 const Sidemenu = () => {
+  const [id, setId] = useState();
+  useEffect(() => {
+    const { id } = getUser();
+    setId(id);
+  }, []);
+  const chatUrl = `/user/dashboard/chat/${id}`;
   return (
     <div className="sidebar">
       <div className="sidebarWrapper">
@@ -39,7 +46,7 @@ const Sidemenu = () => {
           </NavLink>
         </div>
         <div className="sidebarMenu">
-          <NavLink to="/user/dashboard/chat" className="link">
+          <NavLink to={chatUrl} className="link">
             <li className="sidebarListItem">
               <BiSupport className="sidebarIcon" />
               Support
