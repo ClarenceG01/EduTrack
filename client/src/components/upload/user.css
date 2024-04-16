@@ -1,0 +1,48 @@
+.add-student-component {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 2rem 7rem;
+}
+.add-student-component span {
+  font-size: 1.2rem;
+  font-weight: 600;
+  font-family: "Poppins", sans-serif;
+  margin-bottom: 1rem;
+}
+.add-student-component form {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+}
+.add-student-component form label {
+  width: 100%;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: "inter", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.add-student-component form input {
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+  width: 100%;
+  font-family: "Poppins", sans-serif;
+  font-size: 1rem;
+  border: 1px solid rgb(105, 102, 102);
+  border-radius: 5px;
+}
+.add-student-component form input:focus {
+  outline: 2px solid #0773b9;
+  border: none;
+}
+.add-student-component form button {
+  background-color: #0773b9;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  cursor: pointer;
+  margin: 1rem auto;
+  border-radius: 5px;
+}

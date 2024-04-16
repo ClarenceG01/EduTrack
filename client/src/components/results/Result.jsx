@@ -5,6 +5,7 @@ import axios from "axios";
 import * as XLSX from "xlsx";
 import { saveAs } from "file-saver";
 import { errorToast } from "../../utils/error_toast";
+import { successToast } from "../../utils/success_toast";
 
 const Result = () => {
   const [semester, setSemester] = useState("");
@@ -95,8 +96,10 @@ const Result = () => {
                   withCredentials: true,
                 }
               )
-              .then((res) => console.log(res))
-              .catch((err) => console.log(err));
+              .then((res) => {
+                successToast("Results uploaded successfully");
+              })
+              .catch((err) => errorToast("Failed to upload results"));
           } else {
             errorToast("Please select a file to upload");
           }

@@ -3,6 +3,7 @@ CREATE OR ALTER PROCEDURE GetMessagesBySenderId
 AS
 BEGIN
     SELECT 
+        Users.email,
         'user' AS sender_type,
         user_messages_id AS message_id,
         sender_id AS sender,
@@ -12,6 +13,8 @@ BEGIN
         isRead
     FROM 
         user_messages
+    JOIN Users
+    ON Users.users_id = user_messages.sender_id
     WHERE 
         sender_id = @senderId
     

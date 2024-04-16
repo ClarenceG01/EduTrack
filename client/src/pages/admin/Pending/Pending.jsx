@@ -32,26 +32,30 @@ const Pending = () => {
     <div>
       <h3 className="pending-title">Pending Requests</h3>
       <div className="pending-container">
-        {requests.map((request) => (
-          <div className="pending-card" key={request.email}>
-            <p>{request.email}</p>
-            <p>{request.phone_number}</p>
-            <p>{request.registration_no}</p>
-            <p>
-              {request.request_time.substring(
-                0,
-                request.request_time.indexOf("T")
-              )}
-            </p>
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={() => handleApprove(request)}
-            >
-              Approve
-            </Button>
-          </div>
-        ))}
+        {requests.length === 0 ? (
+          <h3>No pending requests</h3>
+        ) : (
+          requests.map((request) => (
+            <div className="pending-card" key={request.email}>
+              <p>{request.email}</p>
+              <p>{request.phone_number}</p>
+              <p>{request.registration_no}</p>
+              <p>
+                {request.request_time.substring(
+                  0,
+                  request.request_time.indexOf("T")
+                )}
+              </p>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={() => handleApprove(request)}
+              >
+                Approve
+              </Button>
+            </div>
+          ))
+        )}
       </div>
     </div>
   );

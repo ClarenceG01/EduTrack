@@ -75,9 +75,9 @@ const Side = () => {
                   <span>{message.email}</span>
                   <span>{message.registration_no}</span>
                 </div>
-                <div className="unread-messages-count">
-                  <span>{message.unread_messages}</span>
-                </div>
+                {/* <div className="unread-messages-count"> */}
+                {/* <span>{message.unread_messages}</span> */}
+                {/* </div> */}
               </div>
             ))
           : searchResults.map((message, index) => (

@@ -34,3 +34,8 @@
   margin-bottom: 1rem;
   text-align: center;
 }
+.pending-card h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0 auto;
+}
