@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: #f0f0f0;
+        }
+
+        h2 {
+            text-align: center;
+            margin-top: 100px;
+            color: #0773b9;
+        }
+
+        .top {
+            display: flex;
+            margin: 20px 0;
+        }
+
+        .top span {
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+        }
+
+        .top span:first-child {
+            background-color: green;
+        }
+
+        th,
+        td {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .table {
+            margin: 20px 0;
+            border-collapse: collapse;
+            width: 80%;
+        }
+
+        .table th {
+            background-color: #0773b9;
+            color: white;
+        }
+
+        .table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .table tr:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Results release</h2>
+    <div class="top">
+        <span>
+            <%= Name %>
+        </span>
+        <span>
+            <%= Reg_No %>
+        </span>
+    </div>
+    <table class="table">
+        <tr>
+            <th>Unit Code</th>
+            <th>Score</th>
+            <th>Grade</th>
+        </tr>
+        <% allResults.forEach(result=> { %>
+            <tr>
+                <td>
+                    <%= result.unit_code %>
+                </td>
+                <td>
+                    <%= result.score %>
+                </td>
+                <td>
+                    <%= result.grade %>
+                </td>
+            </tr>
+            <% }) %>
+    </table>
+</body>
+
+</html>

@@ -12,10 +12,14 @@ async function fetchStats(req, res) {
       // no of pending request
       const pending = await pool.request().execute("getPendingRequestsCount");
       const { count } = pending.recordset[0];
+      // get number of students
+      const students = await pool.request().execute("getStudentCount");
+      const { StudentCount } = students.recordset[0];
       res.status(StatusCodes.OK).json({
         message: "successful",
         users: Total_Users,
         pending: count,
+        students: StudentCount,
       });
     }
   } catch (error) {
@@ -165,6 +169,120 @@ async function approveRequest(req, res) {
     res.send(error);
   }
 }
+async function addParent(req, res) {
+  try {
+    const { pool } = req;
+    const { firstName, lastName, email, phoneNumber, registrationNumber } =
+      req.body;
+    if (pool.connected) {
+      const result = await pool
+        .request()
+        .input("first_name", firstName)
+        .input("last_name", lastName)
+        .input("email", email)
+        .input("phone_number", phoneNumber)
+        .input("registration_no", registrationNumber)
+        .execute("addParent");
+      console.log(result);
+      res.status(200).json({
+        success: true,
+        message: "Parent added successfully",
+      });
+    } else {
+      res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+        success: false,
+        message: "An error occurred while adding parent",
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+      success: false,
+      message: "An error occurred while adding parent",
+    });
+  }
+}
+async function addParents(req, res) {
+  try {
+    const { pool } = req;
+    const { parents } = req.body;
+    if (pool.connected) {
+      for (let parent of parents) {
+        const { first_name, last_name, email, phone_number, registration_no } =
+          parent;
+        const result = await pool
+          .request()
+          .input("first_name", first_name)
+          .input("last_name", last_name)
+          .input("email", email)
+          .input("phone_number", "0" + phone_number)
+          .input("registration_no", registration_no)
+          .execute("addParent");
+        console.log(result);
+      }
+      res.status(200).json({
+        success: true,
+        message: "Parents added successfully",
+      });
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+async function addStudent(req, res) {
+  try {
+    const { pool } = req;
+    if (pool.connected) {
+      const { firstName, lastName, registrationNumber, yearOfStudy } = req.body;
+      const result = await pool
+        .request()
+        .input("registration_no", registrationNumber)
+        .input("first_name", firstName)
+        .input("last_name", lastName)
+        .input("year", yearOfStudy)
+        .execute("addStudent");
+      res.status(200).json({
+        success: true,
+        message: "Student added successfully",
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+      success: false,
+      message: "An error occurred while adding student",
+    });
+  }
+}
+async function addStudents(req, res) {
+  console.log("students");
+  try {
+    const { pool } = req;
+    const { students } = req.body;
+    if (pool.connected) {
+      for (let student of students) {
+        const { firstName, lastName, registrationNumber, year } = student;
+        const result = await pool
+          .request()
+          .input("registration_no", registrationNumber)
+          .input("first_name", firstName)
+          .input("last_name", lastName)
+          .input("year", year)
+          .execute("addStudent");
+      }
+      res.status(StatusCodes.OK).json({
+        success: true,
+        message: "Students added successfully",
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+      success: false,
+      message: "An error occurred while adding students",
+    });
+  }
+}
 module.exports = {
   fetchStats,
   searchStudent,
@@ -174,4 +292,8 @@ module.exports = {
   getEachSemesterUnitsAverage,
   getPendingRequests,
   approveRequest,
+  addParent,
+  addParents,
+  addStudent,
+  addStudents,
 };

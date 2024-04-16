@@ -15,7 +15,6 @@ import Student from "./components/students/Student";
 import Dash from "./pages/user/Dash";
 import Userhome from "./components/userhome/Userhome";
 import UserResults from "./components/user-results/UserResults";
-import Profile from "./components/profile/Profile";
 import UserSettings from "./components/user-settings/UserSettings";
 import Chat from "./pages/Chat/Chat";
 import Singlestudent from "./components/single-student/Singlestudent";
@@ -25,6 +24,8 @@ import Pending from "./pages/admin/Pending/Pending";
 import Default from "./components/message-side/Default";
 import Conversation from "./components/message-side/Conversation";
 import Convo from "./components/message-side/Convo";
+import Adduser from "./components/upload/Adduser";
+import Addstudent from "./components/upload/Addstudent";
 
 function App() {
   return (
@@ -35,6 +36,8 @@ function App() {
         {/* admin dashboard */}
         <Route path="/dashboard" element={<Dashboard />}>
           <Route path="/dashboard/" element={<Home />}></Route>
+          <Route path="/dashboard/upload-user" element={<Adduser />} />
+          <Route path="/dashboard/upload-student" element={<Addstudent />} />
           <Route path="/dashboard/requests" element={<Requests />} />
           <Route path="/dashboard/settings" element={<Settings />} />
           <Route path="/dashboard/results" element={<Result />} />
@@ -54,10 +57,8 @@ function App() {
         <Route path="/changepwd" element={<ChangePassword />} />
         {/* user dashboard */}
         <Route path="/user/dashboard" element={<Dash />}>
-          <Route path="/user/dashboard/" element={<Userhome />} />
-          <Route path="/user/dashboard/results" element={<UserResults />} />
+          <Route path="/user/dashboard/" element={<UserResults />} />
           <Route path="/user/dashboard/noticeboard" element={<New />} />
-          <Route path="/user/dashboard/profile" element={<Profile />} />
           <Route path="/user/dashboard/settings" element={<UserSettings />} />
           <Route path="/user/dashboard/chat" element={<Chat />}>
             <Route path="/user/dashboard/chat/:id" element={<Convo />} />

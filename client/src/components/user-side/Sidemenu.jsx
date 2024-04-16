@@ -30,14 +30,6 @@ const Sidemenu = () => {
           </NavLink>
         </div>
         <div className="sidebarMenu">
-          <NavLink to="/user/dashboard/results" className="link">
-            <li className="sidebarListItem">
-              <AssessmentIcon className="sidebarIcon" />
-              Results
-            </li>
-          </NavLink>
-        </div>
-        <div className="sidebarMenu">
           <NavLink to="/user/dashboard/noticeboard" className="link">
             <li className="sidebarListItem">
               <MdEvent className="sidebarIcon" />
@@ -50,14 +42,6 @@ const Sidemenu = () => {
             <li className="sidebarListItem">
               <BiSupport className="sidebarIcon" />
               Support
-            </li>
-          </NavLink>
-        </div>
-        <div className="sidebarMenu">
-          <NavLink to="/user/dashboard/profile" className="link">
-            <li className="sidebarListItem">
-              <CgProfile className="sidebarIcon" />
-              Profile
             </li>
           </NavLink>
         </div>

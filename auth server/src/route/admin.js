@@ -10,6 +10,10 @@ const {
   getEachSemesterUnitsAverage,
   getPendingRequests,
   approveRequest,
+  addParent,
+  addParents,
+  addStudent,
+  addStudents,
 } = require("../controllers/admin");
 const { authenticate } = require("../middleware/authenticate");
 
@@ -37,5 +41,9 @@ adminroute.get(
 );
 adminroute.get("/pending", authenticate, getPendingRequests);
 adminroute.post("/approve", authenticate, approveRequest);
+adminroute.post("/upload/parent", authenticate, addParent);
+adminroute.post("/parents", authenticate, addParents);
+adminroute.post("/upload/student", authenticate, addStudent);
+adminroute.post("/students", authenticate, addStudents);
 
 module.exports = { adminroute };
