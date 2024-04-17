@@ -10,7 +10,7 @@ const config = {
     idleTimeoutMillis: 30000,
   },
   options: {
-    encrypt: false, // for azure
+    encrypt: true, // for azure
     trustServerCertificate: true,
   },
 };
